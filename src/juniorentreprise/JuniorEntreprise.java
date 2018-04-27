@@ -5,6 +5,8 @@
  */
 package juniorentreprise;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author Arthur
@@ -16,6 +18,15 @@ public class JuniorEntreprise {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        JFrame fenetre= new FenetreAccueil();
+        fenetre.pack();
+        // Q5 : Avec pack(), la fenêtre adapte sa taille de manière à ce que tous les composants de la fenêtre tiennent à l'intérieur.
+        fenetre.setVisible(true);
+        // Q9 : Le layout est très différent
+        
+        JFrame fenetre2= new FenetreAccueil("Junior Entreprise");
+        fenetre2.pack();
+        fenetre2.setVisible(true);
     }
     
 }
