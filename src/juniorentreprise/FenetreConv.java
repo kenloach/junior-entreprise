@@ -9,7 +9,7 @@ package juniorentreprise;
  *
  * @author p1705387
  */
-public class FenetreConvention extends javax.swing.JFrame {
+public class FenetreConv extends javax.swing.JFrame {
 
     /**
      * Creates new form FenetreConvention
