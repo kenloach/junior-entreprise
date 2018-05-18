@@ -5,8 +5,12 @@
  */
 package juniorentreprise;
 
+import java.awt.Dialog.ModalityType;
 import javax.swing.ImageIcon;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.YES_NO_CANCEL_OPTION;
 
 
 
@@ -16,6 +20,41 @@ import javax.swing.JLabel;
  */
 public class Dashboard extends javax.swing.JFrame {
 
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(FenetreConvention.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(FenetreConvention.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(FenetreConvention.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(FenetreConvention.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Dashboard().setVisible(true);
+            }
+        });
+    }
+    
     /**
      * Creates new form Dashboard
      */
@@ -38,32 +77,37 @@ public class Dashboard extends javax.swing.JFrame {
     private void initComponents() {
 
         dialogConn = new javax.swing.JDialog();
-        passwordField = new javax.swing.JPasswordField();
-        tfLogin = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        btnEnvoi = new javax.swing.JButton();
-        btnAnnul = new javax.swing.JButton();
+        btnConnexion = new javax.swing.JButton();
+        btnAnnulConn = new javax.swing.JButton();
+        jXLoginPane = new org.jdesktop.swingx.JXLoginPane();
         jColorChooser1 = new javax.swing.JColorChooser();
         jFileChooser1 = new javax.swing.JFileChooser();
+        dialogInscr = new javax.swing.JDialog();
+        btnEnvoyer = new javax.swing.JButton();
+        btnAnnulInscr = new javax.swing.JButton();
+        lblLogin = new javax.swing.JLabel();
+        tfLogin = new javax.swing.JTextField();
+        lblPaswd = new javax.swing.JLabel();
+        lblConfirm = new javax.swing.JLabel();
+        pfConfirm = new javax.swing.JPasswordField();
+        pfPaswd = new javax.swing.JPasswordField();
+        tfMail = new javax.swing.JTextField();
+        lblMail = new javax.swing.JLabel();
+        btnSuppr = new javax.swing.JButton();
         tpOnglets = new javax.swing.JTabbedPane();
         pnlAccueil = new javax.swing.JPanel();
         pnlRappel = new javax.swing.JPanel();
-        lblRappel = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
         taRappel = new javax.swing.JTextArea();
         pnlCalend = new javax.swing.JPanel();
-        lblCalend = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        jXMonthView1 = new org.jdesktop.swingx.JXMonthView();
+        jXImageView1 = new org.jdesktop.swingx.JXImageView();
         pnlEtud = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        spTabEtud = new javax.swing.JScrollPane();
         tabEtud = new javax.swing.JTable();
-        jTextField2 = new javax.swing.JTextField();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        spAlphaEtud = new javax.swing.JScrollPane();
+        ListAlphaEtud = new javax.swing.JList<>();
+        sfEtud = new org.jdesktop.swingx.JXSearchField();
         pnlClient = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
         tabClient = new javax.swing.JTable();
@@ -76,15 +120,15 @@ public class Dashboard extends javax.swing.JFrame {
         jTextField4 = new javax.swing.JTextField();
         jScrollPane9 = new javax.swing.JScrollPane();
         jList3 = new javax.swing.JList<>();
-        jPanel2 = new javax.swing.JPanel();
+        pnlDocs = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         pnlAside = new javax.swing.JPanel();
         jToggleButton1 = new javax.swing.JToggleButton();
         menuBar = new javax.swing.JMenuBar();
         menFichier = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        miNouv = new javax.swing.JMenuItem();
+        miOuvr = new javax.swing.JMenuItem();
+        miQuit = new javax.swing.JMenuItem();
         menAccueil = new javax.swing.JMenu();
         menPrec = new javax.swing.JMenu();
         menSuiv = new javax.swing.JMenu();
@@ -92,68 +136,165 @@ public class Dashboard extends javax.swing.JFrame {
         miConn = new javax.swing.JMenuItem();
         miInscr = new javax.swing.JMenuItem();
 
-        passwordField.setText("jPasswordField1");
+        dialogConn.setTitle("Connexion");
 
-        jLabel1.setText("Login");
-
-        jLabel2.setText("Mot de Passe");
-
-        btnEnvoi.setText("Annuler");
-
-        btnAnnul.setText("Connexion");
-        btnAnnul.addActionListener(new java.awt.event.ActionListener() {
+        btnConnexion.setText("Connexion");
+        btnConnexion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAnnulActionPerformed(evt);
+                btnConnexionActionPerformed(evt);
             }
         });
+
+        btnAnnulConn.setText("Annuler");
+        btnAnnulConn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAnnulConnActionPerformed(evt);
+            }
+        });
+
+        jXLoginPane.setToolTipText("");
 
         javax.swing.GroupLayout dialogConnLayout = new javax.swing.GroupLayout(dialogConn.getContentPane());
         dialogConn.getContentPane().setLayout(dialogConnLayout);
         dialogConnLayout.setHorizontalGroup(
             dialogConnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(dialogConnLayout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addGroup(dialogConnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(dialogConnLayout.createSequentialGroup()
-                        .addComponent(btnAnnul)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnEnvoi))
-                    .addGroup(dialogConnLayout.createSequentialGroup()
-                        .addGroup(dialogConnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(dialogConnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(tfLogin)
-                            .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addGap(63, 63, 63)
+                .addComponent(btnConnexion)
+                .addGap(77, 77, 77)
+                .addComponent(btnAnnulConn)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(dialogConnLayout.createSequentialGroup()
+                .addComponent(jXLoginPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         dialogConnLayout.setVerticalGroup(
             dialogConnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(dialogConnLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(dialogConnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                .addComponent(jXLoginPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(dialogConnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
-                .addGroup(dialogConnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnEnvoi)
-                    .addComponent(btnAnnul))
-                .addContainerGap())
+                    .addComponent(btnConnexion)
+                    .addComponent(btnAnnulConn))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        tfLogin.getAccessibleContext().setAccessibleDescription("User name");
+        dialogInscr.setTitle("Inscription");
+        dialogInscr.setModal(true);
+
+        btnEnvoyer.setText("Envoyer");
+        btnEnvoyer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEnvoyerActionPerformed(evt);
+            }
+        });
+
+        btnAnnulInscr.setText("Annuler");
+        btnAnnulInscr.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAnnulInscrActionPerformed(evt);
+            }
+        });
+
+        lblLogin.setText("Login");
+
+        tfLogin.setToolTipText("Username");
+        tfLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfLoginActionPerformed(evt);
+            }
+        });
+
+        lblPaswd.setText("Mot de Passe");
+
+        lblConfirm.setText("Confirmation MdP");
+
+        pfConfirm.setToolTipText("confirmer mdp");
+
+        pfPaswd.setToolTipText("8 caractères");
+
+        tfMail.setToolTipText("abc@mail.com");
+        tfMail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfMailActionPerformed(evt);
+            }
+        });
+
+        lblMail.setText("Adresse Mail");
+
+        btnSuppr.setText("Supprimer");
+        btnSuppr.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSupprActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout dialogInscrLayout = new javax.swing.GroupLayout(dialogInscr.getContentPane());
+        dialogInscr.getContentPane().setLayout(dialogInscrLayout);
+        dialogInscrLayout.setHorizontalGroup(
+            dialogInscrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dialogInscrLayout.createSequentialGroup()
+                .addGap(52, 52, 52)
+                .addGroup(dialogInscrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(dialogInscrLayout.createSequentialGroup()
+                        .addGroup(dialogInscrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblPaswd)
+                            .addComponent(lblLogin))
+                        .addGap(43, 43, 43)
+                        .addComponent(tfLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(dialogInscrLayout.createSequentialGroup()
+                        .addGroup(dialogInscrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblConfirm)
+                            .addComponent(lblMail))
+                        .addGap(18, 18, 18)
+                        .addGroup(dialogInscrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tfMail, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(pfConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(pfPaswd, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(82, Short.MAX_VALUE))
+            .addGroup(dialogInscrLayout.createSequentialGroup()
+                .addGap(66, 66, 66)
+                .addComponent(btnEnvoyer)
+                .addGap(18, 18, 18)
+                .addComponent(btnSuppr)
+                .addGap(18, 18, 18)
+                .addComponent(btnAnnulInscr)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        dialogInscrLayout.setVerticalGroup(
+            dialogInscrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dialogInscrLayout.createSequentialGroup()
+                .addContainerGap(35, Short.MAX_VALUE)
+                .addGroup(dialogInscrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblLogin))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(dialogInscrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(pfPaswd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblPaswd))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(dialogInscrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(pfConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblConfirm))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(dialogInscrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfMail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblMail))
+                .addGap(69, 69, 69)
+                .addGroup(dialogInscrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSuppr)
+                    .addComponent(btnEnvoyer)
+                    .addComponent(btnAnnulInscr))
+                .addGap(49, 49, 49))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Junior Entreprise");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setName("frameJE"); // NOI18N
 
-        lblRappel.setText("Rappels");
+        pnlRappel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Rappels", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 2, 14))); // NOI18N
+        pnlRappel.setToolTipText("");
 
         taRappel.setColumns(20);
         taRappel.setRows(5);
@@ -165,89 +306,75 @@ public class Dashboard extends javax.swing.JFrame {
             pnlRappelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlRappelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnlRappelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlRappelLayout.createSequentialGroup()
-                        .addComponent(lblRappel)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlRappelLayout.createSequentialGroup()
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
-                        .addContainerGap())))
+                .addComponent(jScrollPane4)
+                .addContainerGap())
         );
         pnlRappelLayout.setVerticalGroup(
             pnlRappelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlRappelLayout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addComponent(lblRappel)
-                .addGap(33, 33, 33)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlRappelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        lblCalend.setText("Calendrier");
+        pnlCalend.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Calendrier", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 2, 14))); // NOI18N
 
-        jRadioButton1.setText("jRadioButton1");
-
-        jRadioButton2.setText("jRadioButton2");
-
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane2.setViewportView(jTextArea1);
+        jXMonthView1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jXMonthView1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlCalendLayout = new javax.swing.GroupLayout(pnlCalend);
         pnlCalend.setLayout(pnlCalendLayout);
         pnlCalendLayout.setHorizontalGroup(
             pnlCalendLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlCalendLayout.createSequentialGroup()
-                .addGroup(pnlCalendLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlCalendLayout.createSequentialGroup()
-                        .addGroup(pnlCalendLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnlCalendLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(lblCalend))
-                            .addGroup(pnlCalendLayout.createSequentialGroup()
-                                .addGap(11, 11, 11)
-                                .addComponent(jRadioButton1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jRadioButton2)))
-                        .addGap(0, 25, Short.MAX_VALUE))
-                    .addGroup(pnlCalendLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane2)))
-                .addContainerGap())
+            .addComponent(jXMonthView1, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
         );
         pnlCalendLayout.setVerticalGroup(
             pnlCalendLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlCalendLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblCalend)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(pnlCalendLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jXMonthView1, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
+        );
+
+        jXImageView1.setBackground(new java.awt.Color(204, 255, 255));
+
+        javax.swing.GroupLayout jXImageView1Layout = new javax.swing.GroupLayout(jXImageView1);
+        jXImageView1.setLayout(jXImageView1Layout);
+        jXImageView1Layout.setHorizontalGroup(
+            jXImageView1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jXImageView1Layout.setVerticalGroup(
+            jXImageView1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout pnlAccueilLayout = new javax.swing.GroupLayout(pnlAccueil);
         pnlAccueil.setLayout(pnlAccueilLayout);
         pnlAccueilLayout.setHorizontalGroup(
             pnlAccueilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlAccueilLayout.createSequentialGroup()
-                .addContainerGap(612, Short.MAX_VALUE)
-                .addGroup(pnlAccueilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnlRappel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pnlCalend, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlAccueilLayout.createSequentialGroup()
+                .addGap(116, 116, 116)
+                .addComponent(jXImageView1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 404, Short.MAX_VALUE)
+                .addGroup(pnlAccueilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(pnlCalend, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlRappel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         pnlAccueilLayout.setVerticalGroup(
             pnlAccueilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlAccueilLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pnlRappel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlAccueilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlAccueilLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(pnlRappel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlAccueilLayout.createSequentialGroup()
+                        .addGap(72, 72, 72)
+                        .addComponent(jXImageView1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(pnlCalend, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(82, Short.MAX_VALUE))
         );
 
         tpOnglets.addTab("Accueil", pnlAccueil);
@@ -271,21 +398,20 @@ public class Dashboard extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tabEtud);
+        spTabEtud.setViewportView(tabEtud);
 
-        jTextField2.setText("Barre de recherche (à réaliser)");
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
-            }
-        });
-
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+        ListAlphaEtud.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane5.setViewportView(jList1);
+        spAlphaEtud.setViewportView(ListAlphaEtud);
+
+        sfEtud.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sfEtudActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlEtudLayout = new javax.swing.GroupLayout(pnlEtud);
         pnlEtud.setLayout(pnlEtudLayout);
@@ -293,22 +419,22 @@ public class Dashboard extends javax.swing.JFrame {
             pnlEtudLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlEtudLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnlEtudLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextField2)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 817, Short.MAX_VALUE))
+                .addGroup(pnlEtudLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(sfEtud, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(spTabEtud, javax.swing.GroupLayout.DEFAULT_SIZE, 805, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(spAlphaEtud, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         pnlEtudLayout.setVerticalGroup(
             pnlEtudLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlEtudLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(sfEtud, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlEtudLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane5)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 421, Short.MAX_VALUE))
+                    .addComponent(spAlphaEtud, javax.swing.GroupLayout.DEFAULT_SIZE, 472, Short.MAX_VALUE)
+                    .addComponent(spTabEtud))
                 .addContainerGap())
         );
 
@@ -362,7 +488,7 @@ public class Dashboard extends javax.swing.JFrame {
                     .addGroup(pnlClientLayout.createSequentialGroup()
                         .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 820, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
+                        .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
                         .addContainerGap())))
         );
         pnlClientLayout.setVerticalGroup(
@@ -373,7 +499,7 @@ public class Dashboard extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane7)
-                    .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 421, Short.MAX_VALUE))
+                    .addComponent(jScrollPane6))
                 .addContainerGap())
         );
 
@@ -427,7 +553,7 @@ public class Dashboard extends javax.swing.JFrame {
                     .addGroup(pnlProjetLayout.createSequentialGroup()
                         .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 820, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
+                        .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
                         .addContainerGap())))
         );
         pnlProjetLayout.setVerticalGroup(
@@ -438,32 +564,37 @@ public class Dashboard extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlProjetLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane9)
-                    .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 421, Short.MAX_VALUE))
+                    .addComponent(jScrollPane8))
                 .addContainerGap())
         );
 
         tpOnglets.addTab("Projets", pnlProjet);
 
         jButton1.setText("Créer Convention");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout pnlDocsLayout = new javax.swing.GroupLayout(pnlDocs);
+        pnlDocs.setLayout(pnlDocsLayout);
+        pnlDocsLayout.setHorizontalGroup(
+            pnlDocsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlDocsLayout.createSequentialGroup()
                 .addGap(100, 100, 100)
                 .addComponent(jButton1)
-                .addContainerGap(659, Short.MAX_VALUE))
+                .addContainerGap(647, Short.MAX_VALUE))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(392, Short.MAX_VALUE)
+        pnlDocsLayout.setVerticalGroup(
+            pnlDocsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDocsLayout.createSequentialGroup()
+                .addContainerGap(446, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(59, 59, 59))
         );
 
-        tpOnglets.addTab("Documents", jPanel2);
+        tpOnglets.addTab("Documents", pnlDocs);
 
         jToggleButton1.setText("ON");
         jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -491,14 +622,19 @@ public class Dashboard extends javax.swing.JFrame {
 
         menFichier.setText("Fichier");
 
-        jMenuItem2.setText("jMenuItem2");
-        menFichier.add(jMenuItem2);
+        miNouv.setText("Nouveau");
+        menFichier.add(miNouv);
 
-        jMenuItem3.setText("jMenuItem3");
-        menFichier.add(jMenuItem3);
+        miOuvr.setText("Ouvrir");
+        menFichier.add(miOuvr);
 
-        jMenuItem4.setText("jMenuItem4");
-        menFichier.add(jMenuItem4);
+        miQuit.setText("Quitter");
+        miQuit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miQuitActionPerformed(evt);
+            }
+        });
+        menFichier.add(miQuit);
 
         menuBar.add(menFichier);
 
@@ -559,17 +695,16 @@ public class Dashboard extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAnnulActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnnulActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAnnulActionPerformed
-
     private void miInscrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miInscrActionPerformed
-        // TODO add your handling code here:
+        try { 
+            dialogInscr.setModalityType(ModalityType.APPLICATION_MODAL);
+            dialogInscr.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+            dialogInscr.pack();
+            dialogInscr.setVisible(true);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }//GEN-LAST:event_miInscrActionPerformed
-
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
 
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
         // TODO add your handling code here:
@@ -584,12 +719,77 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField4ActionPerformed
 
     private void miConnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miConnActionPerformed
-        // TODO add your handling code here:
+        try { 
+            dialogConn.setModalityType(ModalityType.APPLICATION_MODAL);
+            dialogConn.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+            dialogConn.pack();
+            dialogConn.setVisible(true);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }//GEN-LAST:event_miConnActionPerformed
 
     private void menAccueilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menAccueilActionPerformed
-        
+        tpOnglets.setSelectedIndex(0);
     }//GEN-LAST:event_menAccueilActionPerformed
+
+    private void btnConnexionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConnexionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnConnexionActionPerformed
+
+    private void btnEnvoyerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnvoyerActionPerformed
+        
+        
+    }//GEN-LAST:event_btnEnvoyerActionPerformed
+
+    private void btnAnnulConnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnnulConnActionPerformed
+        dialogConn.dispose();
+    }//GEN-LAST:event_btnAnnulConnActionPerformed
+
+    private void tfLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfLoginActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfLoginActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+            FenetreConvention convention = new FenetreConvention();
+            convention.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+            convention.pack();
+            convention.setVisible(true);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jXMonthView1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jXMonthView1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jXMonthView1ActionPerformed
+
+    private void btnAnnulInscrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnnulInscrActionPerformed
+        dialogInscr.dispose();
+    }//GEN-LAST:event_btnAnnulInscrActionPerformed
+
+    private void tfMailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfMailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfMailActionPerformed
+
+    private void btnSupprActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSupprActionPerformed
+        //On vide les champs de texte
+        tfLogin.setText("");
+        tfMail.setText("");
+        pfPaswd.setText("");
+        pfConfirm.setText("");
+    }//GEN-LAST:event_btnSupprActionPerformed
+
+    private void sfEtudActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sfEtudActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sfEtudActionPerformed
+
+    private void miQuitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miQuitActionPerformed
+        int response = JOptionPane.showConfirmDialog(this,"Voulez-vous vraiment quitter ?","Fenêtre de Confirmation" , YES_NO_CANCEL_OPTION);
+        //Si on répond "Oui", on quitte.
+        if (response==JOptionPane.YES_OPTION) System.exit(0);
+    }//GEN-LAST:event_miQuitActionPerformed
 
     /**
      * @param args the command line arguments
@@ -605,38 +805,34 @@ public class Dashboard extends javax.swing.JFrame {
     }*/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAnnul;
-    private javax.swing.JButton btnEnvoi;
+    private javax.swing.JList<String> ListAlphaEtud;
+    private javax.swing.JButton btnAnnulConn;
+    private javax.swing.JButton btnAnnulInscr;
+    private javax.swing.JButton btnConnexion;
+    private javax.swing.JButton btnEnvoyer;
+    private javax.swing.JButton btnSuppr;
     private javax.swing.JDialog dialogConn;
+    private javax.swing.JDialog dialogInscr;
     private javax.swing.JButton jButton1;
     private javax.swing.JColorChooser jColorChooser1;
     private javax.swing.JFileChooser jFileChooser1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JList<String> jList2;
     private javax.swing.JList<String> jList3;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JToggleButton jToggleButton1;
-    private javax.swing.JLabel lblCalend;
-    private javax.swing.JLabel lblRappel;
+    private org.jdesktop.swingx.JXImageView jXImageView1;
+    private org.jdesktop.swingx.JXLoginPane jXLoginPane;
+    private org.jdesktop.swingx.JXMonthView jXMonthView1;
+    private javax.swing.JLabel lblConfirm;
+    private javax.swing.JLabel lblLogin;
+    private javax.swing.JLabel lblMail;
+    private javax.swing.JLabel lblPaswd;
     private javax.swing.JMenu menAccueil;
     private javax.swing.JMenu menConn;
     private javax.swing.JMenu menFichier;
@@ -645,20 +841,29 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem miConn;
     private javax.swing.JMenuItem miInscr;
-    private javax.swing.JPasswordField passwordField;
+    private javax.swing.JMenuItem miNouv;
+    private javax.swing.JMenuItem miOuvr;
+    private javax.swing.JMenuItem miQuit;
+    private javax.swing.JPasswordField pfConfirm;
+    private javax.swing.JPasswordField pfPaswd;
     private javax.swing.JPanel pnlAccueil;
     private javax.swing.JPanel pnlAside;
     private javax.swing.JPanel pnlCalend;
     private javax.swing.JPanel pnlClient;
+    private javax.swing.JPanel pnlDocs;
     private javax.swing.JPanel pnlEtud;
     private javax.swing.JPanel pnlProjet;
     private javax.swing.JPanel pnlRappel;
+    private org.jdesktop.swingx.JXSearchField sfEtud;
+    private javax.swing.JScrollPane spAlphaEtud;
+    private javax.swing.JScrollPane spTabEtud;
     private javax.swing.JTextArea taRappel;
     private javax.swing.JTable tabClient;
     private javax.swing.JTable tabEtud;
     private javax.swing.JTable tabProjet;
     private javax.swing.JTextField tfLogin;
+    private javax.swing.JTextField tfMail;
     private javax.swing.JTabbedPane tpOnglets;
     // End of variables declaration//GEN-END:variables
-    private Calendrier calendrier;
+
 }

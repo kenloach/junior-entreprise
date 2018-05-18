@@ -27,8 +27,6 @@ public class FenetreConvention extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDialog1 = new javax.swing.JDialog();
-        jMenu1 = new javax.swing.JMenu();
         jPanel1 = new javax.swing.JPanel();
         pnlElementsConvention = new javax.swing.JPanel();
         logoJE = new javax.swing.JLabel();
@@ -51,20 +49,8 @@ public class FenetreConvention extends javax.swing.JFrame {
         dtPickDateDebut = new org.jdesktop.swingx.JXDatePicker();
         dtPickDateFin = new org.jdesktop.swingx.JXDatePicker();
 
-        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
-        jDialog1.getContentPane().setLayout(jDialog1Layout);
-        jDialog1Layout.setHorizontalGroup(
-            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        jDialog1Layout.setVerticalGroup(
-            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
-
-        jMenu1.setText("jMenu1");
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Edition de Convention");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -104,6 +90,11 @@ public class FenetreConvention extends javax.swing.JFrame {
 
         btnGen.setText("Générer PDF");
         btnGen.setToolTipText("");
+        btnGen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGenActionPerformed(evt);
+            }
+        });
 
         btnMod.setText("<html>Modifier Texte <br>\nManuellement\n</html>");
 
@@ -247,40 +238,11 @@ public class FenetreConvention extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cbbEtuActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FenetreConvention.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FenetreConvention.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FenetreConvention.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FenetreConvention.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void btnGenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnGenActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FenetreConvention().setVisible(true);
-            }
-        });
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGen;
@@ -290,8 +252,6 @@ public class FenetreConvention extends javax.swing.JFrame {
     private org.jdesktop.swingx.JXDatePicker dtPickDateDebut;
     private org.jdesktop.swingx.JXDatePicker dtPickDateDuJour;
     private org.jdesktop.swingx.JXDatePicker dtPickDateFin;
-    private javax.swing.JDialog jDialog1;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblDateDebut;
     private javax.swing.JLabel lblDateDuJour;
