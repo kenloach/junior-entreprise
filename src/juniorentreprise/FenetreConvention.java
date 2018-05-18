@@ -8,6 +8,7 @@ package juniorentreprise;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
+import javax.swing.JOptionPane;
 import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
 
@@ -24,7 +25,7 @@ public class FenetreConvention extends javax.swing.JFrame {
         initComponents();
         LocalDate dateActuelle = LocalDate.now();
         dtPickDateDuJour.setDate(Date.from(dateActuelle.atStartOfDay(ZoneId.systemDefault()).toInstant()));
-        SpinnerModel spinPrixModel = new SpinnerNumberModel(0.0, 0.0, 999999999, 100);
+        SpinnerModel spinPrixModel = new SpinnerNumberModel(0.0, 0.0, 999999.0, 1.0);
         spinMontant.setModel(spinPrixModel);
         
 
@@ -116,6 +117,11 @@ public class FenetreConvention extends javax.swing.JFrame {
 
         btnGen.setText("Générer PDF");
         btnGen.setToolTipText("");
+        btnGen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGenActionPerformed(evt);
+            }
+        });
 
         btnMod.setText("<html>Modifier Texte <br>\nManuellement\n</html>");
 
@@ -128,7 +134,7 @@ public class FenetreConvention extends javax.swing.JFrame {
                 .addGroup(pnlBoutonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnGen, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnMod, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         pnlBoutonsLayout.setVerticalGroup(
             pnlBoutonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -147,49 +153,47 @@ public class FenetreConvention extends javax.swing.JFrame {
         pnlElementsConventionLayout.setHorizontalGroup(
             pnlElementsConventionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlElementsConventionLayout.createSequentialGroup()
+                .addGap(2, 2, 2)
+                .addComponent(logoJE, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblTitre)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(pnlElementsConventionLayout.createSequentialGroup()
                 .addGroup(pnlElementsConventionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlElementsConventionLayout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addComponent(logoJE, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblTitre)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(pnlElementsConventionLayout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlElementsConventionLayout.createSequentialGroup()
+                        .addGroup(pnlElementsConventionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(lblMontant, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblDateFin, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblDateDebut, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
                         .addGroup(pnlElementsConventionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlElementsConventionLayout.createSequentialGroup()
-                                .addGroup(pnlElementsConventionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(lblMontant, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(lblDateFin, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblDateDebut, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE))
-                                .addGap(18, 18, 18)
-                                .addGroup(pnlElementsConventionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(pnlElementsConventionLayout.createSequentialGroup()
-                                        .addComponent(spinMontant)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(lblEuro)
-                                        .addGap(84, 84, 84))
-                                    .addGroup(pnlElementsConventionLayout.createSequentialGroup()
-                                        .addGroup(pnlElementsConventionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(dtPickDateFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(dtPickDateDebut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addGroup(pnlElementsConventionLayout.createSequentialGroup()
+                                .addComponent(spinMontant)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lblEuro)
+                                .addGap(84, 84, 84))
                             .addGroup(pnlElementsConventionLayout.createSequentialGroup()
                                 .addGroup(pnlElementsConventionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(pnlElementsConventionLayout.createSequentialGroup()
-                                        .addComponent(lblNomEtu, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(cbbEtu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(pnlElementsConventionLayout.createSequentialGroup()
-                                        .addComponent(lblDateDuJour, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(dtPickDateDuJour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 76, Short.MAX_VALUE)))
-                        .addGap(102, 102, 102)
-                        .addComponent(lblNomEnt)
-                        .addGap(18, 18, 18)
-                        .addComponent(cbbEnt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(pnlBoutons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(dtPickDateFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(dtPickDateDebut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(pnlElementsConventionLayout.createSequentialGroup()
+                        .addGroup(pnlElementsConventionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlElementsConventionLayout.createSequentialGroup()
+                                .addComponent(lblNomEtu, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cbbEtu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(pnlElementsConventionLayout.createSequentialGroup()
+                                .addComponent(lblDateDuJour, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(dtPickDateDuJour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 107, Short.MAX_VALUE)))
+                .addGap(40, 40, 40)
+                .addComponent(lblNomEnt)
+                .addGap(18, 18, 18)
+                .addComponent(cbbEnt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
+                .addComponent(pnlBoutons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addComponent(sepHautDePage)
         );
@@ -258,6 +262,38 @@ public class FenetreConvention extends javax.swing.JFrame {
     private void cbbEtuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbEtuActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbbEtuActionPerformed
+
+    private void btnGenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenActionPerformed
+        // TODO add your handling code here:
+        if(cbbEtu.getSelectedItem() == null){
+            JOptionPane.showMessageDialog(this, "Aucun étudiant sélectionné", "Erreur : Manque d'informations", JOptionPane.ERROR_MESSAGE);
+        }
+        else if(cbbEnt.getSelectedItem() == null){
+            JOptionPane.showMessageDialog(this, "Aucune entreprise sélectionnée", "Erreur : Manque d'informations", JOptionPane.ERROR_MESSAGE);
+        }
+        else if(dtPickDateDuJour.getDate() ==(null)){
+            JOptionPane.showMessageDialog(this, "Date du Jour non sélectionnée", "Erreur : Manque d'informations", JOptionPane.ERROR_MESSAGE);
+        }
+        else if((dtPickDateDebut.getDate() == null)){
+            JOptionPane.showMessageDialog(this, "Date de début non sélectionnée", "Erreur : Manque d'informations", JOptionPane.ERROR_MESSAGE);
+        }
+        else if(dtPickDateFin.getDate() == null){
+            JOptionPane.showMessageDialog(this, "Date de fin non sélectionnée", "Erreur : Manque d'informations", JOptionPane.ERROR_MESSAGE);
+        }
+        else if(dtPickDateDebut.getDate().before(dtPickDateDuJour.getDate())){
+            JOptionPane.showMessageDialog(this, "Date de début programmée avant Date du jour", "Erreur : Informations incompatibles", JOptionPane.ERROR_MESSAGE);
+        }
+        else if(dtPickDateFin.getDate().before(dtPickDateDuJour.getDate())){
+            JOptionPane.showMessageDialog(this, "Date de fin programmée avant Date du jour", "Erreur : Informations incompatibles", JOptionPane.ERROR_MESSAGE);
+        }
+        else if(dtPickDateDebut.getDate().after(dtPickDateFin.getDate())){
+            JOptionPane.showMessageDialog(this, "Date de fin programmée avant Date de début", "Erreur : Informations incompatibles", JOptionPane.ERROR_MESSAGE);
+        }
+        else if(Float.parseFloat(spinMontant.getValue().toString()) < 0){
+            JOptionPane.showMessageDialog(this, "Le montant ne peut pas être négatif", "Erreur : Informations incompatibles", JOptionPane.ERROR_MESSAGE);
+        }
+        
+    }//GEN-LAST:event_btnGenActionPerformed
 
     /**
      * @param args the command line arguments
