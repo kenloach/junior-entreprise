@@ -52,7 +52,7 @@
           <Group type="102" alignment="0" attributes="0">
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="panelElementsConvention" max="32767" attributes="0"/>
+              <Component id="pnlElementsConvention" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -60,7 +60,7 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="jPanel1" max="32767" attributes="0"/>
-          <Component id="panelElementsConvention" alignment="0" max="32767" attributes="0"/>
+          <Component id="pnlElementsConvention" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -80,7 +80,7 @@
         </DimensionLayout>
       </Layout>
     </Container>
-    <Container class="javax.swing.JPanel" name="panelElementsConvention">
+    <Container class="javax.swing.JPanel" name="pnlElementsConvention">
 
       <Layout>
         <DimensionLayout dim="0">
@@ -140,12 +140,12 @@
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="cbbEnt" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="panelBoutons" min="-2" max="-2" attributes="0"/>
+                          <Component id="pnlBoutons" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
-              <Component id="separatorHautDePage" max="32767" attributes="0"/>
+              <Component id="sepHautDePage" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -156,11 +156,11 @@
                       <Component id="lblTitre" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
-                  <Component id="separatorHautDePage" min="-2" pref="10" max="-2" attributes="0"/>
+                  <Component id="sepHautDePage" min="-2" pref="10" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
-                          <Component id="panelBoutons" max="32767" attributes="0"/>
+                          <Component id="pnlBoutons" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -281,9 +281,9 @@
         </Component>
         <Component class="javax.swing.JSpinner" name="spinMontant">
         </Component>
-        <Component class="javax.swing.JSeparator" name="separatorHautDePage">
+        <Component class="javax.swing.JSeparator" name="sepHautDePage">
         </Component>
-        <Container class="javax.swing.JPanel" name="panelBoutons">
+        <Container class="javax.swing.JPanel" name="pnlBoutons">
 
           <Layout>
             <DimensionLayout dim="0">

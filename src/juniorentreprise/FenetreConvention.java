@@ -30,7 +30,7 @@ public class FenetreConvention extends javax.swing.JFrame {
         jDialog1 = new javax.swing.JDialog();
         jMenu1 = new javax.swing.JMenu();
         jPanel1 = new javax.swing.JPanel();
-        panelElementsConvention = new javax.swing.JPanel();
+        pnlElementsConvention = new javax.swing.JPanel();
         logoJE = new javax.swing.JLabel();
         lblTitre = new javax.swing.JLabel();
         lblNomEtu = new javax.swing.JLabel();
@@ -42,8 +42,8 @@ public class FenetreConvention extends javax.swing.JFrame {
         lblDateFin = new javax.swing.JLabel();
         lblMontant = new javax.swing.JLabel();
         spinMontant = new javax.swing.JSpinner();
-        separatorHautDePage = new javax.swing.JSeparator();
-        panelBoutons = new javax.swing.JPanel();
+        sepHautDePage = new javax.swing.JSeparator();
+        pnlBoutons = new javax.swing.JPanel();
         btnGen = new javax.swing.JButton();
         btnMod = new javax.swing.JButton();
         lblEuro = new javax.swing.JLabel();
@@ -107,20 +107,20 @@ public class FenetreConvention extends javax.swing.JFrame {
 
         btnMod.setText("<html>Modifier Texte <br>\nManuellement\n</html>");
 
-        javax.swing.GroupLayout panelBoutonsLayout = new javax.swing.GroupLayout(panelBoutons);
-        panelBoutons.setLayout(panelBoutonsLayout);
-        panelBoutonsLayout.setHorizontalGroup(
-            panelBoutonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelBoutonsLayout.createSequentialGroup()
+        javax.swing.GroupLayout pnlBoutonsLayout = new javax.swing.GroupLayout(pnlBoutons);
+        pnlBoutons.setLayout(pnlBoutonsLayout);
+        pnlBoutonsLayout.setHorizontalGroup(
+            pnlBoutonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlBoutonsLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(panelBoutonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlBoutonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnGen, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnMod, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
-        panelBoutonsLayout.setVerticalGroup(
-            panelBoutonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelBoutonsLayout.createSequentialGroup()
+        pnlBoutonsLayout.setVerticalGroup(
+            pnlBoutonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlBoutonsLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnMod, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -130,44 +130,44 @@ public class FenetreConvention extends javax.swing.JFrame {
 
         lblEuro.setText("€");
 
-        javax.swing.GroupLayout panelElementsConventionLayout = new javax.swing.GroupLayout(panelElementsConvention);
-        panelElementsConvention.setLayout(panelElementsConventionLayout);
-        panelElementsConventionLayout.setHorizontalGroup(
-            panelElementsConventionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelElementsConventionLayout.createSequentialGroup()
-                .addGroup(panelElementsConventionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelElementsConventionLayout.createSequentialGroup()
+        javax.swing.GroupLayout pnlElementsConventionLayout = new javax.swing.GroupLayout(pnlElementsConvention);
+        pnlElementsConvention.setLayout(pnlElementsConventionLayout);
+        pnlElementsConventionLayout.setHorizontalGroup(
+            pnlElementsConventionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlElementsConventionLayout.createSequentialGroup()
+                .addGroup(pnlElementsConventionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlElementsConventionLayout.createSequentialGroup()
                         .addGap(2, 2, 2)
                         .addComponent(logoJE, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblTitre)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(panelElementsConventionLayout.createSequentialGroup()
-                        .addGroup(panelElementsConventionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelElementsConventionLayout.createSequentialGroup()
-                                .addGroup(panelElementsConventionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(pnlElementsConventionLayout.createSequentialGroup()
+                        .addGroup(pnlElementsConventionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlElementsConventionLayout.createSequentialGroup()
+                                .addGroup(pnlElementsConventionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(lblMontant, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(lblDateFin, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblDateDebut, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE))
                                 .addGap(18, 18, 18)
-                                .addGroup(panelElementsConventionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(panelElementsConventionLayout.createSequentialGroup()
+                                .addGroup(pnlElementsConventionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(pnlElementsConventionLayout.createSequentialGroup()
                                         .addComponent(spinMontant)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(lblEuro)
                                         .addGap(84, 84, 84))
-                                    .addGroup(panelElementsConventionLayout.createSequentialGroup()
-                                        .addGroup(panelElementsConventionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(pnlElementsConventionLayout.createSequentialGroup()
+                                        .addGroup(pnlElementsConventionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(dtPickDateFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(dtPickDateDebut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(0, 0, Short.MAX_VALUE))))
-                            .addGroup(panelElementsConventionLayout.createSequentialGroup()
-                                .addGroup(panelElementsConventionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(panelElementsConventionLayout.createSequentialGroup()
+                            .addGroup(pnlElementsConventionLayout.createSequentialGroup()
+                                .addGroup(pnlElementsConventionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(pnlElementsConventionLayout.createSequentialGroup()
                                         .addComponent(lblNomEtu, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(cbbEtu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(panelElementsConventionLayout.createSequentialGroup()
+                                    .addGroup(pnlElementsConventionLayout.createSequentialGroup()
                                         .addComponent(lblDateDuJour, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
                                         .addComponent(dtPickDateDuJour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -177,47 +177,47 @@ public class FenetreConvention extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(cbbEnt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(panelBoutons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(pnlBoutons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
-            .addComponent(separatorHautDePage)
+            .addComponent(sepHautDePage)
         );
-        panelElementsConventionLayout.setVerticalGroup(
-            panelElementsConventionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelElementsConventionLayout.createSequentialGroup()
-                .addGroup(panelElementsConventionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        pnlElementsConventionLayout.setVerticalGroup(
+            pnlElementsConventionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlElementsConventionLayout.createSequentialGroup()
+                .addGroup(pnlElementsConventionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(logoJE, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblTitre))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(separatorHautDePage, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(panelElementsConventionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelElementsConventionLayout.createSequentialGroup()
+                .addComponent(sepHautDePage, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(pnlElementsConventionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlElementsConventionLayout.createSequentialGroup()
                         .addGap(7, 7, 7)
-                        .addComponent(panelBoutons, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(panelElementsConventionLayout.createSequentialGroup()
-                        .addGroup(panelElementsConventionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelElementsConventionLayout.createSequentialGroup()
+                        .addComponent(pnlBoutons, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(pnlElementsConventionLayout.createSequentialGroup()
+                        .addGroup(pnlElementsConventionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlElementsConventionLayout.createSequentialGroup()
                                 .addGap(7, 7, 7)
-                                .addGroup(panelElementsConventionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addGroup(pnlElementsConventionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(lblNomEtu)
                                     .addComponent(lblNomEnt)
                                     .addComponent(cbbEnt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(panelElementsConventionLayout.createSequentialGroup()
+                            .addGroup(pnlElementsConventionLayout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(cbbEtu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
-                        .addGroup(panelElementsConventionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(pnlElementsConventionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblDateDuJour)
                             .addComponent(dtPickDateDuJour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(panelElementsConventionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(pnlElementsConventionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblDateDebut)
                             .addComponent(dtPickDateDebut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(panelElementsConventionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(pnlElementsConventionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblDateFin)
                             .addComponent(dtPickDateFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(panelElementsConventionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(pnlElementsConventionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblMontant)
                             .addComponent(spinMontant, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblEuro))
@@ -231,13 +231,13 @@ public class FenetreConvention extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(panelElementsConvention, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pnlElementsConvention, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(panelElementsConvention, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnlElementsConvention, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -302,9 +302,9 @@ public class FenetreConvention extends javax.swing.JFrame {
     private javax.swing.JLabel lblNomEtu;
     private javax.swing.JLabel lblTitre;
     private javax.swing.JLabel logoJE;
-    private javax.swing.JPanel panelBoutons;
-    private javax.swing.JPanel panelElementsConvention;
-    private javax.swing.JSeparator separatorHautDePage;
+    private javax.swing.JPanel pnlBoutons;
+    private javax.swing.JPanel pnlElementsConvention;
+    private javax.swing.JSeparator sepHautDePage;
     private javax.swing.JSpinner spinMontant;
     // End of variables declaration//GEN-END:variables
 }
