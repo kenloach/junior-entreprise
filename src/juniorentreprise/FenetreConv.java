@@ -14,7 +14,7 @@ public class FenetreConv extends javax.swing.JFrame {
     /**
      * Creates new form FenetreConvention
      */
-    public FenetreConvention() {
+    public FenetreConv() {
         initComponents();
     }
 
