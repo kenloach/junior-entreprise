@@ -5,17 +5,29 @@
  */
 package juniorentreprise;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
+import javax.swing.SpinnerModel;
+import javax.swing.SpinnerNumberModel;
+
 /**
  *
  * @author p1705387
  */
 public class FenetreConvention extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form FenetreConvention
      */
     public FenetreConvention() {
         initComponents();
+        LocalDate dateActuelle = LocalDate.now();
+        dtPickDateDuJour.setDate(Date.from(dateActuelle.atStartOfDay(ZoneId.systemDefault()).toInstant()));
+        SpinnerModel spinPrixModel = new SpinnerNumberModel(0.0, 0.0, 999999999, 100);
+        spinMontant.setModel(spinPrixModel);
+        
+
     }
 
     /**
