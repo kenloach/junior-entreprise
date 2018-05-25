@@ -907,7 +907,13 @@ public class Dashboard extends javax.swing.JFrame {
             String defautPosteJE = "Membre";
             String myPass = String.valueOf(pfPaswd.getPassword());
             String myConfirm = String.valueOf(pfConfirm.getPassword());
-            if(!tfLogin.getText().equals("") && !myPass.equals("") && myPass.equals(myConfirm) && !tfNom.getText().equals("") && !tfPrenom.getText().equals("") && !tfMail.getText().equals("") && !tfTel.getText().equals(""))
+            String myLogin = tfLogin.getText();
+            String myNom = tfNom.getText();
+            String myPrenom = tfPrenom.getText();
+            String myMail = tfMail.getText();
+            String myTel = tfTel.getText();
+            if(!myLogin.equals("") && !myPass.equals("") && myPass.equals(myConfirm) && !myNom.equals("") && !myPrenom.equals("") && 
+                    !myMail.equals("") && !myTel.equals("") && myMail.matches("^[_a-z0-9-]+(\\.[_a-z0-9-]+)*@[a-z0-9-]+(\\.[a-z0-9-]+)+$"))
             {
                 String insert="INSERT INTO MembreJE (Nom,Prenom,Email,Tel,Poste,Login,Password) VALUES('"+ tfNom.getText() +"','"+ tfPrenom.getText() +"','"+ tfMail.getText() 
                         +"','"+ tfTel.getText() +"','"+ defautPosteJE +"','"+ tfLogin.getText() +"','"+ myPass +"');";
