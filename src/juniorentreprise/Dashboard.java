@@ -6,6 +6,11 @@
 package juniorentreprise;
 
 import java.awt.Dialog.ModalityType;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -80,21 +85,29 @@ public class Dashboard extends javax.swing.JFrame {
         btnConnexion = new javax.swing.JButton();
         btnAnnulConn = new javax.swing.JButton();
         jXLoginPane = new org.jdesktop.swingx.JXLoginPane();
-        jButton2 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        btnAdmin = new javax.swing.JButton();
+        lblOubli = new javax.swing.JLabel();
         jColorChooser1 = new javax.swing.JColorChooser();
         jFileChooser1 = new javax.swing.JFileChooser();
         dialogInscr = new javax.swing.JDialog();
-        btnEnvoyer = new javax.swing.JButton();
-        btnAnnulInscr = new javax.swing.JButton();
+        pnlLabel = new javax.swing.JPanel();
         lblLogin = new javax.swing.JLabel();
         tfLogin = new javax.swing.JTextField();
         lblPaswd = new javax.swing.JLabel();
+        pfPaswd = new javax.swing.JPasswordField();
         lblConfirm = new javax.swing.JLabel();
         pfConfirm = new javax.swing.JPasswordField();
-        pfPaswd = new javax.swing.JPasswordField();
-        tfMail = new javax.swing.JTextField();
+        lblPrenom = new javax.swing.JLabel();
+        tfPrenom = new javax.swing.JTextField();
+        lblNom = new javax.swing.JLabel();
+        tfNom = new javax.swing.JTextField();
         lblMail = new javax.swing.JLabel();
+        tfMail = new javax.swing.JTextField();
+        lblTel = new javax.swing.JLabel();
+        tfTel = new javax.swing.JTextField();
+        pnlButton = new javax.swing.JPanel();
+        btnEnvoyer = new javax.swing.JButton();
+        btnAnnulInscr = new javax.swing.JButton();
         btnSuppr = new javax.swing.JButton();
         tpOnglets = new javax.swing.JTabbedPane();
         pnlAccueil = new javax.swing.JPanel();
@@ -125,7 +138,8 @@ public class Dashboard extends javax.swing.JFrame {
         jScrollPane9 = new javax.swing.JScrollPane();
         jList3 = new javax.swing.JList<>();
         pnlDocs = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        btnConvention = new javax.swing.JButton();
+        btnIndemnisation = new javax.swing.JButton();
         pnlAside = new javax.swing.JPanel();
         jToggleButton1 = new javax.swing.JToggleButton();
         menuBar = new javax.swing.JMenuBar();
@@ -158,28 +172,28 @@ public class Dashboard extends javax.swing.JFrame {
 
         jXLoginPane.setToolTipText("");
 
-        jButton2.setText("jButton2");
+        btnAdmin.setText("Contacter l'Admin");
 
-        jLabel1.setText("jLabel1");
+        lblOubli.setText("Mot de passe oublié ?");
 
         javax.swing.GroupLayout dialogConnLayout = new javax.swing.GroupLayout(dialogConn.getContentPane());
         dialogConn.getContentPane().setLayout(dialogConnLayout);
         dialogConnLayout.setHorizontalGroup(
             dialogConnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(dialogConnLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dialogConnLayout.createSequentialGroup()
                 .addComponent(jXLoginPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(dialogConnLayout.createSequentialGroup()
                 .addGap(63, 63, 63)
-                .addGroup(dialogConnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(dialogConnLayout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2))
+                .addGroup(dialogConnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(dialogConnLayout.createSequentialGroup()
                         .addComponent(btnConnexion)
                         .addGap(77, 77, 77)
-                        .addComponent(btnAnnulConn)))
+                        .addComponent(btnAnnulConn))
+                    .addGroup(dialogConnLayout.createSequentialGroup()
+                        .addComponent(lblOubli)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnAdmin)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         dialogConnLayout.setVerticalGroup(
@@ -192,13 +206,82 @@ public class Dashboard extends javax.swing.JFrame {
                     .addComponent(btnAnnulConn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(dialogConnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jLabel1))
+                    .addComponent(btnAdmin)
+                    .addComponent(lblOubli))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         dialogInscr.setTitle("Inscription");
         dialogInscr.setModal(true);
+
+        pnlLabel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        pnlLabel.setLayout(new java.awt.GridLayout(7, 2, 10, 10));
+
+        lblLogin.setText("Login");
+        pnlLabel.add(lblLogin);
+
+        tfLogin.setToolTipText("Username");
+        tfLogin.setPreferredSize(new java.awt.Dimension(6, 25));
+        tfLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfLoginActionPerformed(evt);
+            }
+        });
+        pnlLabel.add(tfLogin);
+
+        lblPaswd.setText("Mot de Passe");
+        pnlLabel.add(lblPaswd);
+
+        pfPaswd.setToolTipText("8 caractères");
+        pnlLabel.add(pfPaswd);
+
+        lblConfirm.setText("Confirmation MdP");
+        pnlLabel.add(lblConfirm);
+
+        pfConfirm.setToolTipText("confirmer mdp");
+        pnlLabel.add(pfConfirm);
+
+        lblPrenom.setText("Prénom");
+        pnlLabel.add(lblPrenom);
+
+        tfPrenom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfPrenomActionPerformed(evt);
+            }
+        });
+        pnlLabel.add(tfPrenom);
+
+        lblNom.setText("Nom");
+        pnlLabel.add(lblNom);
+
+        tfNom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfNomActionPerformed(evt);
+            }
+        });
+        pnlLabel.add(tfNom);
+
+        lblMail.setText("Adresse Mail");
+        pnlLabel.add(lblMail);
+
+        tfMail.setToolTipText("abc@mail.com");
+        tfMail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfMailActionPerformed(evt);
+            }
+        });
+        pnlLabel.add(tfMail);
+
+        lblTel.setText("Tel");
+        pnlLabel.add(lblTel);
+
+        tfTel.setToolTipText("00 00 00 00 00");
+        tfTel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfTelActionPerformed(evt);
+            }
+        });
+        pnlLabel.add(tfTel);
 
         btnEnvoyer.setText("Envoyer");
         btnEnvoyer.addActionListener(new java.awt.event.ActionListener() {
@@ -214,32 +297,6 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
-        lblLogin.setText("Login");
-
-        tfLogin.setToolTipText("Username");
-        tfLogin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfLoginActionPerformed(evt);
-            }
-        });
-
-        lblPaswd.setText("Mot de Passe");
-
-        lblConfirm.setText("Confirmation MdP");
-
-        pfConfirm.setToolTipText("confirmer mdp");
-
-        pfPaswd.setToolTipText("8 caractères");
-
-        tfMail.setToolTipText("abc@mail.com");
-        tfMail.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfMailActionPerformed(evt);
-            }
-        });
-
-        lblMail.setText("Adresse Mail");
-
         btnSuppr.setText("Supprimer");
         btnSuppr.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -247,63 +304,47 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
+        javax.swing.GroupLayout pnlButtonLayout = new javax.swing.GroupLayout(pnlButton);
+        pnlButton.setLayout(pnlButtonLayout);
+        pnlButtonLayout.setHorizontalGroup(
+            pnlButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlButtonLayout.createSequentialGroup()
+                .addComponent(btnEnvoyer)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addComponent(btnSuppr)
+                .addGap(44, 44, 44)
+                .addComponent(btnAnnulInscr))
+        );
+        pnlButtonLayout.setVerticalGroup(
+            pnlButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlButtonLayout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addGroup(pnlButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnEnvoyer)
+                    .addComponent(btnSuppr)
+                    .addComponent(btnAnnulInscr))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout dialogInscrLayout = new javax.swing.GroupLayout(dialogInscr.getContentPane());
         dialogInscr.getContentPane().setLayout(dialogInscrLayout);
         dialogInscrLayout.setHorizontalGroup(
             dialogInscrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(dialogInscrLayout.createSequentialGroup()
-                .addGap(52, 52, 52)
-                .addGroup(dialogInscrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(dialogInscrLayout.createSequentialGroup()
-                        .addGroup(dialogInscrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblPaswd)
-                            .addComponent(lblLogin))
-                        .addGap(43, 43, 43)
-                        .addComponent(tfLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(dialogInscrLayout.createSequentialGroup()
-                        .addGroup(dialogInscrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblConfirm)
-                            .addComponent(lblMail))
-                        .addGap(18, 18, 18)
-                        .addGroup(dialogInscrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tfMail, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(pfConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(pfPaswd, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(82, Short.MAX_VALUE))
-            .addGroup(dialogInscrLayout.createSequentialGroup()
-                .addGap(66, 66, 66)
-                .addComponent(btnEnvoyer)
-                .addGap(18, 18, 18)
-                .addComponent(btnSuppr)
-                .addGap(18, 18, 18)
-                .addComponent(btnAnnulInscr)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(40, 40, 40)
+                .addGroup(dialogInscrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(pnlLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
         dialogInscrLayout.setVerticalGroup(
             dialogInscrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(dialogInscrLayout.createSequentialGroup()
-                .addContainerGap(35, Short.MAX_VALUE)
-                .addGroup(dialogInscrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblLogin))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(dialogInscrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(pfPaswd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblPaswd))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(dialogInscrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(pfConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblConfirm))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(dialogInscrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfMail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblMail))
-                .addGap(69, 69, 69)
-                .addGroup(dialogInscrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSuppr)
-                    .addComponent(btnEnvoyer)
-                    .addComponent(btnAnnulInscr))
-                .addGap(49, 49, 49))
+                .addGap(30, 30, 30)
+                .addComponent(pnlLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pnlButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -618,10 +659,17 @@ public class Dashboard extends javax.swing.JFrame {
 
         tpOnglets.addTab("Projets", pnlProjet);
 
-        jButton1.setText("Créer Convention");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnConvention.setText("Créer Convention");
+        btnConvention.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnConventionActionPerformed(evt);
+            }
+        });
+
+        btnIndemnisation.setText("Gérer Indemnisations");
+        btnIndemnisation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIndemnisationActionPerformed(evt);
             }
         });
 
@@ -631,14 +679,18 @@ public class Dashboard extends javax.swing.JFrame {
             pnlDocsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlDocsLayout.createSequentialGroup()
                 .addGap(100, 100, 100)
-                .addComponent(jButton1)
-                .addContainerGap(647, Short.MAX_VALUE))
+                .addComponent(btnConvention)
+                .addGap(127, 127, 127)
+                .addComponent(btnIndemnisation)
+                .addContainerGap(365, Short.MAX_VALUE))
         );
         pnlDocsLayout.setVerticalGroup(
             pnlDocsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDocsLayout.createSequentialGroup()
                 .addContainerGap(446, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addGroup(pnlDocsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnConvention)
+                    .addComponent(btnIndemnisation))
                 .addGap(59, 59, 59))
         );
 
@@ -733,11 +785,8 @@ public class Dashboard extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(tpOnglets)
-                    .addComponent(pnlAside, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addComponent(tpOnglets)
+            .addComponent(pnlAside, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -782,23 +831,71 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_menAccueilActionPerformed
 
     private void btnConnexionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConnexionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnConnexionActionPerformed
+        Connection connexion = null;
+        Statement statement = null;
+        ResultSet resultat = null;
+        try {
+            //Ouverture de la connexion, initialisation d'un Statement, initialisation d'un ResultSet, etc.
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://iutdoua-web.univ-lyon1.fr:3306/p1702775", "p1702775", "296054");
+            Statement stmt=(Statement)con.createStatement();
+            String nomCon = jXLoginPane.getUserName();
+            String passCon = String.valueOf(jXLoginPane.getPassword());
+            String request = "SELECT * FROM MembreJE WHERE login='"+nomCon+"' AND password='"+passCon+"';";
+            
+            /* Exécution d'une requête de lecture */
+            resultat =  stmt.executeQuery(request);//query pour des requetes SELECT
+            if(resultat.next())
+            {
+                int idUtilisateur = resultat.getInt( "id" );
+                String emailUtilisateur = resultat.getString( "email" );
+                String motDePasseUtilisateur = resultat.getString( "password" );
+                String nomUtilisateur = resultat.getString( "nom" );
+                System.out.println("Données retournées par la requête : id = " + idUtilisateur + ", email = " + emailUtilisateur
+                    + ", motdepasse = "
+                    + motDePasseUtilisateur + ", nom = " + nomUtilisateur + "." );
+                JOptionPane.showMessageDialog(null, "Connexion réussie !" ,"Connexion", 1);
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Identifiants invalides" ,"Erreur", 1);
+            }
 
-    private void btnEnvoyerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnvoyerActionPerformed
-        
-        
-    }//GEN-LAST:event_btnEnvoyerActionPerformed
+            /* Traiter ici les valeurs récupérées. */
+        } catch ( Exception e ) {
+            JOptionPane.showMessageDialog(null, e.getMessage() ,"Error", 1);
+        } finally {
+            if ( resultat != null ) {
+                try {
+                    /* On commence par fermer le ResultSet */
+                    resultat.close();
+                } catch ( SQLException ignore ) {
+                    JOptionPane.showMessageDialog(null, ignore.getMessage() ,"Error", 1);
+                }
+            }
+            if ( statement != null ) {
+                try {
+                    /* Puis on ferme le Statement */
+                    statement.close();
+                } catch ( SQLException ignore ) {
+                    JOptionPane.showMessageDialog(null, ignore.getMessage() ,"Error", 1);
+                }
+            }
+            if ( connexion != null ) {
+                try {
+                    /* Et enfin on ferme la connexion */
+                    connexion.close();
+                } catch ( SQLException ignore ) {
+                    JOptionPane.showMessageDialog(null, ignore.getMessage() ,"Error", 1);
+                }
+            }
+        }
+    }//GEN-LAST:event_btnConnexionActionPerformed
 
     private void btnAnnulConnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnnulConnActionPerformed
         dialogConn.dispose();
     }//GEN-LAST:event_btnAnnulConnActionPerformed
 
-    private void tfLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfLoginActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfLoginActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnConventionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConventionActionPerformed
         try {
             FenetreConvention convention = new FenetreConvention();
             convention.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -807,23 +904,7 @@ public class Dashboard extends javax.swing.JFrame {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void btnAnnulInscrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnnulInscrActionPerformed
-        dialogInscr.dispose();
-    }//GEN-LAST:event_btnAnnulInscrActionPerformed
-
-    private void tfMailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfMailActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfMailActionPerformed
-
-    private void btnSupprActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSupprActionPerformed
-        //On vide les champs de texte
-        tfLogin.setText("");
-        tfMail.setText("");
-        pfPaswd.setText("");
-        pfConfirm.setText("");
-    }//GEN-LAST:event_btnSupprActionPerformed
+    }//GEN-LAST:event_btnConventionActionPerformed
 
     private void sfEtudActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sfEtudActionPerformed
         // TODO add your handling code here:
@@ -835,9 +916,93 @@ public class Dashboard extends javax.swing.JFrame {
         if (response==JOptionPane.YES_OPTION) System.exit(0);
     }//GEN-LAST:event_miQuitActionPerformed
 
+
     private void jXMonthView1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jXMonthView1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jXMonthView1ActionPerformed
+
+    private void btnSupprActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSupprActionPerformed
+        //On vide les champs de texte
+        tfLogin.setText("");
+        tfMail.setText("");
+        pfPaswd.setText("");
+        pfConfirm.setText("");
+        tfNom.setText("");
+        tfPrenom.setText("");
+        tfTel.setText("");
+    }//GEN-LAST:event_btnSupprActionPerformed
+
+    private void btnAnnulInscrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnnulInscrActionPerformed
+        dialogInscr.dispose();
+    }//GEN-LAST:event_btnAnnulInscrActionPerformed
+
+    private void btnEnvoyerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnvoyerActionPerformed
+        try
+        {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://iutdoua-web.univ-lyon1.fr:3306/p1702775", "p1702775", "296054");
+            Statement stmt=(Statement)con.createStatement();
+
+            String defautPosteJE = "Membre";
+            String myPass = String.valueOf(pfPaswd.getPassword());
+            String myConfirm = String.valueOf(pfConfirm.getPassword());
+            String myLogin = tfLogin.getText();
+            String myNom = tfNom.getText();
+            String myPrenom = tfPrenom.getText();
+            String myMail = tfMail.getText();
+            String myTel = tfTel.getText();
+            if(!myLogin.equals("") && !myPass.equals("") && myPass.equals(myConfirm) && !myNom.equals("") && !myPrenom.equals("") &&
+                !myMail.equals("") && !myTel.equals("") && myMail.matches("^[_a-z0-9-]+(\\.[_a-z0-9-]+)*@[a-z0-9-]+(\\.[a-z0-9-]+)+$"))
+            {
+                String insert="INSERT INTO MembreJE (Nom,Prenom,Email,Tel,Poste,Login,Password) VALUES('"+ tfNom.getText() +"','"+ tfPrenom.getText() +"','"+ tfMail.getText()
+                +"','"+ tfTel.getText() +"','"+ defautPosteJE +"','"+ tfLogin.getText() +"','"+ myPass +"');";
+                stmt.executeUpdate(insert);//update pour des requetes INSERT, UPDATE, DELETE
+                JOptionPane.showMessageDialog(null, "Inscription réussie" ,"Inscription", 1);
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(null, "Erreur" ,"Error", 1);
+            }
+
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, e.getMessage() ,"Error", 1);
+
+        }
+    }//GEN-LAST:event_btnEnvoyerActionPerformed
+
+    private void tfTelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfTelActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfTelActionPerformed
+
+    private void tfMailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfMailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfMailActionPerformed
+
+    private void tfNomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfNomActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfNomActionPerformed
+
+    private void tfPrenomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfPrenomActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfPrenomActionPerformed
+
+    private void tfLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfLoginActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfLoginActionPerformed
+
+    private void btnIndemnisationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIndemnisationActionPerformed
+        try {
+            FenetreIndemnisation indemnisation = new FenetreIndemnisation();
+            indemnisation.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+            indemnisation.pack();
+            indemnisation.setVisible(true);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_btnIndemnisationActionPerformed
+
 
     /**
      * @param args the command line arguments
@@ -854,18 +1019,18 @@ public class Dashboard extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList<String> ListAlphaEtud;
+    private javax.swing.JButton btnAdmin;
     private javax.swing.JButton btnAnnulConn;
     private javax.swing.JButton btnAnnulInscr;
     private javax.swing.JButton btnConnexion;
+    private javax.swing.JButton btnConvention;
     private javax.swing.JButton btnEnvoyer;
+    private javax.swing.JButton btnIndemnisation;
     private javax.swing.JButton btnSuppr;
     private javax.swing.JDialog dialogConn;
     private javax.swing.JDialog dialogInscr;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JColorChooser jColorChooser1;
     private javax.swing.JFileChooser jFileChooser1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JList<String> jList2;
     private javax.swing.JList<String> jList3;
     private javax.swing.JPanel jPanel1;
@@ -884,7 +1049,11 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel lblConfirm;
     private javax.swing.JLabel lblLogin;
     private javax.swing.JLabel lblMail;
+    private javax.swing.JLabel lblNom;
+    private javax.swing.JLabel lblOubli;
     private javax.swing.JLabel lblPaswd;
+    private javax.swing.JLabel lblPrenom;
+    private javax.swing.JLabel lblTel;
     private javax.swing.JMenu menAccueil;
     private javax.swing.JMenu menConn;
     private javax.swing.JMenu menFichier;
@@ -900,10 +1069,12 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JPasswordField pfPaswd;
     private javax.swing.JPanel pnlAccueil;
     private javax.swing.JPanel pnlAside;
+    private javax.swing.JPanel pnlButton;
     private javax.swing.JPanel pnlCalend;
     private javax.swing.JPanel pnlClient;
     private javax.swing.JPanel pnlDocs;
     private javax.swing.JPanel pnlEtud;
+    private javax.swing.JPanel pnlLabel;
     private javax.swing.JPanel pnlProjet;
     private javax.swing.JPanel pnlRappel;
     private org.jdesktop.swingx.JXSearchField sfEtud;
@@ -915,6 +1086,9 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JTable tabProjet;
     private javax.swing.JTextField tfLogin;
     private javax.swing.JTextField tfMail;
+    private javax.swing.JTextField tfNom;
+    private javax.swing.JTextField tfPrenom;
+    private javax.swing.JTextField tfTel;
     private javax.swing.JTabbedPane tpOnglets;
     // End of variables declaration//GEN-END:variables
 
