@@ -1,10 +1,3 @@
-Site de l'enseignant PHP :
-http://bthouverez.fr/iuta_aspe/
-
-Mettre vos fichiers PHP dans le répertoire D:\wamp64\www
-pour accéder à votre site en local à l'adresse suivante :
-localhost/
-
 Pour accéder aux fichier sur le serveur de l'IUT dans le répertoire Z:\public_html
 l'adresse est : http://iutdoua-web.univ-lyon1.fr/~p1716228/
 
@@ -24,6 +17,8 @@ Les paramètres de connexion sont les suivants :
 
 Pour accéder à l’interface phpMyAdmin qui vous permet de gérer votre base de données MySQL sur le serveur de l’IUT, il vous suffit de vous connecter à l’adresse :
 http://iutdoua-web.univ-lyon1.fr/phpMyAdmin/
+identifiant : p1702775
+password : 296054
 
 Plus d'infos à l'adresse suivante :
 http://iutdoua-web.univ-lyon1.fr/~isabelle.goncalves/programmation-web/annexe.html
