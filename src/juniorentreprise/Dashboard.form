@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.9" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
     <Container class="javax.swing.JDialog" name="dialogConn">
       <Properties>
@@ -10,7 +10,18 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
+<<<<<<< Updated upstream
               <Group type="102" alignment="0" attributes="0">
+=======
+              <Group type="102" attributes="0">
+                  <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
+                  <Component id="btnConnexion" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
+                  <Component id="btnAnnulConn" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="1" attributes="0">
+>>>>>>> Stashed changes
                   <Component id="jXLoginPane" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               </Group>
@@ -99,147 +110,196 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <EmptySpace min="52" pref="52" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="lblPaswd" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblLogin" alignment="0" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
-                          <Component id="tfLogin" min="-2" pref="175" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="96" max="-2" attributes="0"/>
+                          <Component id="pnlLabel" min="-2" pref="375" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="lblConfirm" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblMail" alignment="0" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="tfMail" min="-2" pref="175" max="-2" attributes="0"/>
-                              <Component id="pfConfirm" min="-2" pref="175" max="-2" attributes="0"/>
-                              <Component id="pfPaswd" min="-2" pref="175" max="-2" attributes="0"/>
-                          </Group>
+                          <EmptySpace min="-2" pref="193" max="-2" attributes="0"/>
+                          <Component id="pnlButton" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="82" max="32767" attributes="0"/>
-              </Group>
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
-                  <Component id="btnEnvoyer" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="btnSuppr" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="btnAnnulInscr" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  <EmptySpace pref="265" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
-                  <EmptySpace pref="35" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="tfLogin" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblLogin" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="pfPaswd" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblPaswd" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="pfConfirm" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblConfirm" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="tfMail" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblMail" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="btnSuppr" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnEnvoyer" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnAnnulInscr" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="93" max="-2" attributes="0"/>
+                  <Component id="pnlLabel" min="-2" pref="249" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
+                  <Component id="pnlButton" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="93" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="btnEnvoyer">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Envoyer"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEnvoyerActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="btnAnnulInscr">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Annuler"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAnnulInscrActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JLabel" name="lblLogin">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Login"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="tfLogin">
-          <Properties>
-            <Property name="toolTipText" type="java.lang.String" value="Username"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfLoginActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JLabel" name="lblPaswd">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Mot de Passe"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="lblConfirm">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Confirmation MdP"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JPasswordField" name="pfConfirm">
-          <Properties>
-            <Property name="toolTipText" type="java.lang.String" value="confirmer mdp"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JPasswordField" name="pfPaswd">
-          <Properties>
-            <Property name="toolTipText" type="java.lang.String" value="8 caract&#xe8;res"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="tfMail">
-          <Properties>
-            <Property name="toolTipText" type="java.lang.String" value="abc@mail.com"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfMailActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JLabel" name="lblMail">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Adresse Mail"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="btnSuppr">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Supprimer"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSupprActionPerformed"/>
-          </Events>
-        </Component>
+        <Container class="javax.swing.JPanel" name="pnlLabel">
+
+          <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridLayout">
+            <Property name="columns" type="int" value="2"/>
+            <Property name="horizontalGap" type="int" value="10"/>
+            <Property name="rows" type="int" value="7"/>
+            <Property name="verticalGap" type="int" value="20"/>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="lblLogin">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Login"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="tfLogin">
+              <Properties>
+                <Property name="toolTipText" type="java.lang.String" value="Username"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfLoginActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblPaswd">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Mot de Passe"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JPasswordField" name="pfPaswd">
+              <Properties>
+                <Property name="toolTipText" type="java.lang.String" value="8 caract&#xe8;res"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblConfirm">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Confirmation MdP"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JPasswordField" name="pfConfirm">
+              <Properties>
+                <Property name="toolTipText" type="java.lang.String" value="confirmer mdp"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblPrenom">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Pr&#xe9;nom"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="tfPrenom">
+              <Properties>
+                <Property name="toolTipText" type="java.lang.String" value="abc@mail.com"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfPrenomActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblNom">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Nom"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="tfNom">
+              <Properties>
+                <Property name="toolTipText" type="java.lang.String" value="abc@mail.com"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfNomActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblMail">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Adresse Mail"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="tfMail">
+              <Properties>
+                <Property name="toolTipText" type="java.lang.String" value="abc@mail.com"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfMailActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblTel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Tel"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="tfTel">
+              <Properties>
+                <Property name="toolTipText" type="java.lang.String" value="abc@mail.com"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfTelActionPerformed"/>
+              </Events>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="pnlButton">
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="btnEnvoyer" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="262" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="122" max="-2" attributes="0"/>
+                          <Component id="btnSuppr" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="btnAnnulInscr" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                      <Component id="btnEnvoyer" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="37" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="btnSuppr" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnAnnulInscr" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace pref="38" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JButton" name="btnEnvoyer">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Envoyer"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEnvoyerActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnAnnulInscr">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Annuler"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAnnulInscrActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnSuppr">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Supprimer"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSupprActionPerformed"/>
+              </Events>
+            </Component>
+          </SubComponents>
+        </Container>
       </SubComponents>
     </Container>
     <Menu class="javax.swing.JMenuBar" name="menuBar">
@@ -350,13 +410,8 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="tpOnglets" max="32767" attributes="0"/>
-                  <Component id="pnlAside" max="32767" attributes="0"/>
-              </Group>
-          </Group>
+          <Component id="tpOnglets" max="32767" attributes="0"/>
+          <Component id="pnlAside" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
