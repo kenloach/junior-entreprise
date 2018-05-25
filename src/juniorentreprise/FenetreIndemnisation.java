@@ -44,7 +44,7 @@ public class FenetreIndemnisation extends javax.swing.JFrame {
         jTextField10 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
+        pnlIndemn = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -100,40 +100,40 @@ public class FenetreIndemnisation extends javax.swing.JFrame {
         jButton2.setText("Annuler");
         pnlVersements.add(jButton2);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        jPanel1.setLayout(new java.awt.GridLayout(5, 2, 10, 20));
+        pnlIndemn.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        pnlIndemn.setLayout(new java.awt.GridLayout(5, 2, 10, 20));
 
         jLabel1.setText("N° Projet");
-        jPanel1.add(jLabel1);
-        jPanel1.add(jTextField2);
+        pnlIndemn.add(jLabel1);
+        pnlIndemn.add(jTextField2);
 
         jLabel2.setText("Nom Etudiant");
-        jPanel1.add(jLabel2);
+        pnlIndemn.add(jLabel2);
 
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField3);
+        pnlIndemn.add(jTextField3);
 
         jLabel3.setText("Code Paiement");
-        jPanel1.add(jLabel3);
-        jPanel1.add(jTextField4);
+        pnlIndemn.add(jLabel3);
+        pnlIndemn.add(jTextField4);
 
         jLabel10.setText("jLabel10");
-        jPanel1.add(jLabel10);
-        jPanel1.add(jTextField5);
+        pnlIndemn.add(jLabel10);
+        pnlIndemn.add(jTextField5);
 
         jLabel11.setText("jLabel11");
-        jPanel1.add(jLabel11);
+        pnlIndemn.add(jLabel11);
 
         jTextField6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField6ActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField6);
+        pnlIndemn.add(jTextField6);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -141,7 +141,7 @@ public class FenetreIndemnisation extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(42, 42, 42)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pnlIndemn, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 140, Short.MAX_VALUE)
                 .addComponent(pnlVersements, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(77, 77, 77))
@@ -152,7 +152,7 @@ public class FenetreIndemnisation extends javax.swing.JFrame {
                 .addContainerGap(101, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(pnlIndemn, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(185, 185, 185))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(pnlVersements, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -226,7 +226,6 @@ public class FenetreIndemnisation extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField2;
@@ -237,6 +236,7 @@ public class FenetreIndemnisation extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
+    private javax.swing.JPanel pnlIndemn;
     private javax.swing.JPanel pnlVersements;
     // End of variables declaration//GEN-END:variables
 }
