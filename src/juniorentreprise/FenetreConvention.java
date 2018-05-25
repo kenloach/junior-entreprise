@@ -5,12 +5,23 @@
  */
 package juniorentreprise;
 
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Chunk;
+import java.io.FileOutputStream;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.pdf.PdfWriter;
+import java.io.FileNotFoundException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -264,7 +275,7 @@ public class FenetreConvention extends javax.swing.JFrame {
     }//GEN-LAST:event_cbbEtuActionPerformed
 
     private void btnGenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenActionPerformed
-        // TODO add your handling code here:
+        // Verification que toutes les informations sont saisies et cohérnetes
         if(cbbEtu.getSelectedItem() == null){
             JOptionPane.showMessageDialog(this, "Aucun étudiant sélectionné", "Erreur : Manque d'informations", JOptionPane.ERROR_MESSAGE);
         }
@@ -292,7 +303,30 @@ public class FenetreConvention extends javax.swing.JFrame {
         else if(Float.parseFloat(spinMontant.getValue().toString()) < 0){
             JOptionPane.showMessageDialog(this, "Le montant ne peut pas être négatif", "Erreur : Informations incompatibles", JOptionPane.ERROR_MESSAGE);
         }
-        
+        else{
+            Document docConvention = new Document();
+            try {
+                try {
+                    PdfWriter.getInstance(docConvention, new FileOutputStream("Convention"+cbbEnt.getSelectedItem().toString()+".pdf"));
+                } catch (DocumentException ex) {
+                    Logger.getLogger(FenetreConvention.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(FenetreConvention.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            docConvention.open();
+            Font font = FontFactory.getFont(FontFactory.COURIER, 16, BaseColor.BLACK);
+            Chunk chunk = new Chunk("Convention avec l'entreprise "+cbbEnt.getSelectedItem().toString()+" éditée le "+dtPickDateDuJour.getDate().toString(), font);
+            
+            try {
+                docConvention.add(chunk);
+            } catch (DocumentException ex) {
+                Logger.getLogger(FenetreConvention.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            docConvention.close();
+        }
+            
     }//GEN-LAST:event_btnGenActionPerformed
 
     /**
