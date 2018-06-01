@@ -173,6 +173,11 @@ public class Dashboard extends javax.swing.JFrame {
         jXLoginPane.setToolTipText("");
 
         btnAdmin.setText("Contacter l'Admin");
+        btnAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdminActionPerformed(evt);
+            }
+        });
 
         lblOubli.setText("Mot de passe oublié ?");
 
@@ -388,11 +393,11 @@ public class Dashboard extends javax.swing.JFrame {
         pnlCalend.setLayout(pnlCalendLayout);
         pnlCalendLayout.setHorizontalGroup(
             pnlCalendLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jXMonthView1, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
+            .addComponent(jXMonthView1, javax.swing.GroupLayout.PREFERRED_SIZE, 234, Short.MAX_VALUE)
         );
         pnlCalendLayout.setVerticalGroup(
             pnlCalendLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jXMonthView1, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
+            .addComponent(jXMonthView1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, Short.MAX_VALUE)
         );
 
         jXImageView1.setBackground(new java.awt.Color(204, 255, 255));
@@ -519,7 +524,7 @@ public class Dashboard extends javax.swing.JFrame {
             pnlEtudLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlEtudLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(sfEtud, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
+                .addComponent(sfEtud, javax.swing.GroupLayout.PREFERRED_SIZE, 25, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlEtudLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(spAlphaEtud, javax.swing.GroupLayout.DEFAULT_SIZE, 472, Short.MAX_VALUE)
@@ -577,7 +582,7 @@ public class Dashboard extends javax.swing.JFrame {
                     .addGroup(pnlClientLayout.createSequentialGroup()
                         .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 820, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
+                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 27, Short.MAX_VALUE)
                         .addContainerGap())))
         );
         pnlClientLayout.setVerticalGroup(
@@ -642,7 +647,7 @@ public class Dashboard extends javax.swing.JFrame {
                     .addGroup(pnlProjetLayout.createSequentialGroup()
                         .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 820, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
+                        .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 27, Short.MAX_VALUE)
                         .addContainerGap())))
         );
         pnlProjetLayout.setVerticalGroup(
@@ -1002,6 +1007,10 @@ public class Dashboard extends javax.swing.JFrame {
             ex.printStackTrace();
         }
     }//GEN-LAST:event_btnIndemnisationActionPerformed
+
+    private void btnAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAdminActionPerformed
 
 
     /**
