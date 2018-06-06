@@ -24,6 +24,7 @@ public class menuConnexionStartProgramme extends javax.swing.JFrame {
      */
     public menuConnexionStartProgramme() {
         initComponents();
+        this.getRootPane().setDefaultButton(bt_Connexion);
     }
     
 
@@ -84,7 +85,7 @@ public class menuConnexionStartProgramme extends javax.swing.JFrame {
                         .addComponent(bt_Connexion)
                         .addGap(40, 40, 40)
                         .addComponent(bt_Exit)))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
