@@ -93,7 +93,6 @@
                           </Group>
                       </Group>
                       <Group type="102" attributes="0">
-<<<<<<< HEAD
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="lblNomEtu" min="-2" pref="89" max="-2" attributes="0"/>
@@ -107,18 +106,6 @@
                               </Group>
                           </Group>
                           <EmptySpace min="0" pref="107" max="32767" attributes="0"/>
-=======
-                          <Component id="lblNomEtu" min="-2" pref="89" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="cbbEtu" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="147" max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="lblDateDuJour" min="-2" pref="90" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="dtPickDateDuJour" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
->>>>>>> 25ccacb3e88e775a9d4492c8814093bacbfd5f0d
                       </Group>
                   </Group>
                   <Component id="lblNomEnt" min="-2" max="-2" attributes="0"/>
