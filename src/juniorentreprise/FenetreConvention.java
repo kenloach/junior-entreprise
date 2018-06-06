@@ -5,8 +5,6 @@
  */
 package juniorentreprise;
 
-import com.itextpdf.text.BaseColor;
-import com.itextpdf.text.Chunk;
 import java.io.FileOutputStream;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -14,14 +12,28 @@ import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
+//connexion BDD
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+//edition de documents
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.pdf.PdfWriter;
 import java.io.FileNotFoundException;
+import java.sql.Array;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
 
 /**
  *
@@ -34,11 +46,95 @@ public class FenetreConvention extends javax.swing.JFrame {
      */
     public FenetreConvention() {
         initComponents();
+        //Paramètrage du champ date d'édition
         LocalDate dateActuelle = LocalDate.now();
-        dtPickDateDuJour.setDate(Date.from(dateActuelle.atStartOfDay(ZoneId.systemDefault()).toInstant()));
+        dtPickDateEdition.setDate(Date.from(dateActuelle.atStartOfDay(ZoneId.systemDefault()).toInstant()));
+        //Paramètrage du champ de prix avec valeur minimale
         SpinnerModel spinPrixModel = new SpinnerNumberModel(0.0, 0.0, 999999.0, 1.0);
         spinMontant.setModel(spinPrixModel);
         
+        //Remplissage des combobox avec les valeurs de la BDD
+        Connection con = null;
+        Statement stmt = null;
+        ResultSet resultat = null;
+        try {
+            //Ouverture de la connexion, initialisation d'un Statement, initialisation d'un ResultSet, etc.
+            Class.forName("com.mysql.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://iutdoua-web.univ-lyon1.fr:3306/p1702775", "p1702775", "296054");
+            stmt=(Statement)con.createStatement();
+            String request = "SELECT NomEtudiant FROM Etudiant";
+            
+            /* Exécution d'une requête de lecture */
+            resultat =  stmt.executeQuery(request);//query pour des requetes SELECT
+            
+            //String[] nomsEtudiants = (String[]) resultat.getArray("nomEtudiant").getArray(); NOT SUPORTED
+            //will have to go through row by row, assign the value like in dashboad and add to an array of Strings
+            //Iterator itrNomsEtu = nomsEtudiants.iterator();
+            resultat.first();
+            DefaultComboBoxModel modCbbEtu = new DefaultComboBoxModel();
+            while(!resultat.isAfterLast()){
+                modCbbEtu.addElement(resultat.getString("NomEtudiant"));
+                resultat.next();
+            }
+            
+            
+            
+            /*for(int a = 0; a< nomsEtudiants.length; a++){
+                modCbbEtu.addElement(nomsEtudiants[a]);
+            }*/
+            /*while(itrNomsEtu.hasNext()){
+                modCbbEtu.addElement(itrNomsEtu.next());
+                itrNomsEtu.remove();
+            }*/
+            cbbEtu.setModel(modCbbEtu);
+            
+            //Entreprises
+            Statement stmtEnt=(Statement)con.createStatement();
+            String requestEnt = "SELECT NomEntreprise FROM Entreprise";
+            System.out.println(requestEnt);
+            /* Exécution d'une requête de lecture */
+            resultat =  stmtEnt.executeQuery(requestEnt);//query pour des requetes SELECT
+            System.out.println(resultat.toString());
+            
+            DefaultComboBoxModel modCbbEnt = new DefaultComboBoxModel();
+            resultat.first();
+            while(!resultat.isAfterLast()){
+                modCbbEnt.addElement(resultat.getString("NomEntreprise"));
+                resultat.next();
+            }
+            
+            
+            cbbEnt.setModel(modCbbEnt);
+
+            /* Traiter ici les valeurs récupérées. */
+        } catch ( ClassNotFoundException | SQLException e ) {
+            JOptionPane.showMessageDialog(null, e.getMessage() ,"Georges", 1);
+        } finally {
+            if ( resultat != null ) {
+                try {
+                    /* On commence par fermer le ResultSet */
+                    resultat.close();
+                } catch ( SQLException ignore ) {
+                    JOptionPane.showMessageDialog(null, ignore.getMessage() ,"Error", 1);
+                }
+            }
+            if ( stmt != null ) {
+                try {
+                    /* Puis on ferme le Statement */
+                    stmt.close();
+                } catch ( SQLException ignore ) {
+                    JOptionPane.showMessageDialog(null, ignore.getMessage() ,"Error", 1);
+                }
+            }
+            if ( con != null ) {
+                try {
+                    /* Et enfin on ferme la connexion */
+                    con.close();
+                } catch ( SQLException ignore ) {
+                    JOptionPane.showMessageDialog(null, ignore.getMessage() ,"Error", 1);
+                }
+            }
+        }
 
     }
 
@@ -51,8 +147,6 @@ public class FenetreConvention extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDialog1 = new javax.swing.JDialog();
-        jMenu1 = new javax.swing.JMenu();
         jPanel1 = new javax.swing.JPanel();
         pnlElementsConvention = new javax.swing.JPanel();
         logoJE = new javax.swing.JLabel();
@@ -61,7 +155,7 @@ public class FenetreConvention extends javax.swing.JFrame {
         cbbEtu = new javax.swing.JComboBox<>();
         lblNomEnt = new javax.swing.JLabel();
         cbbEnt = new javax.swing.JComboBox<>();
-        lblDateDuJour = new javax.swing.JLabel();
+        lblDateEdition = new javax.swing.JLabel();
         lblDateDebut = new javax.swing.JLabel();
         lblDateFin = new javax.swing.JLabel();
         lblMontant = new javax.swing.JLabel();
@@ -71,22 +165,9 @@ public class FenetreConvention extends javax.swing.JFrame {
         btnGen = new javax.swing.JButton();
         btnMod = new javax.swing.JButton();
         lblEuro = new javax.swing.JLabel();
-        dtPickDateDuJour = new org.jdesktop.swingx.JXDatePicker();
+        dtPickDateEdition = new org.jdesktop.swingx.JXDatePicker();
         dtPickDateDebut = new org.jdesktop.swingx.JXDatePicker();
         dtPickDateFin = new org.jdesktop.swingx.JXDatePicker();
-
-        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
-        jDialog1.getContentPane().setLayout(jDialog1Layout);
-        jDialog1Layout.setHorizontalGroup(
-            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        jDialog1Layout.setVerticalGroup(
-            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
-
-        jMenu1.setText("jMenu1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -118,7 +199,7 @@ public class FenetreConvention extends javax.swing.JFrame {
 
         cbbEnt.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        lblDateDuJour.setText("Date du jour");
+        lblDateEdition.setText("Date d'édition");
 
         lblDateDebut.setText("Date de début");
 
@@ -176,18 +257,19 @@ public class FenetreConvention extends javax.swing.JFrame {
                             .addComponent(lblMontant, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lblDateFin, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblDateDebut, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
                         .addGroup(pnlElementsConventionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnlElementsConventionLayout.createSequentialGroup()
+                                .addGap(18, 18, 18)
                                 .addComponent(spinMontant)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(lblEuro)
-                                .addGap(84, 84, 84))
+                                .addGap(124, 124, 124))
                             .addGroup(pnlElementsConventionLayout.createSequentialGroup()
+                                .addGap(5, 5, 5)
                                 .addGroup(pnlElementsConventionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(dtPickDateFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(dtPickDateDebut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(pnlElementsConventionLayout.createSequentialGroup()
                         .addGroup(pnlElementsConventionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnlElementsConventionLayout.createSequentialGroup()
@@ -195,9 +277,9 @@ public class FenetreConvention extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(cbbEtu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(pnlElementsConventionLayout.createSequentialGroup()
-                                .addComponent(lblDateDuJour, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblDateEdition, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(dtPickDateDuJour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(dtPickDateEdition, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 107, Short.MAX_VALUE)))
                 .addGap(40, 40, 40)
                 .addComponent(lblNomEnt)
@@ -233,8 +315,8 @@ public class FenetreConvention extends javax.swing.JFrame {
                                 .addComponent(cbbEtu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
                         .addGroup(pnlElementsConventionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblDateDuJour)
-                            .addComponent(dtPickDateDuJour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblDateEdition)
+                            .addComponent(dtPickDateEdition, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(pnlElementsConventionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblDateDebut)
@@ -248,7 +330,7 @@ public class FenetreConvention extends javax.swing.JFrame {
                             .addComponent(lblMontant)
                             .addComponent(spinMontant, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblEuro))
-                        .addContainerGap(399, Short.MAX_VALUE))))
+                        .addContainerGap(381, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -268,6 +350,7 @@ public class FenetreConvention extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void cbbEtuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbEtuActionPerformed
@@ -282,7 +365,7 @@ public class FenetreConvention extends javax.swing.JFrame {
         else if(cbbEnt.getSelectedItem() == null){
             JOptionPane.showMessageDialog(this, "Aucune entreprise sélectionnée", "Erreur : Manque d'informations", JOptionPane.ERROR_MESSAGE);
         }
-        else if(dtPickDateDuJour.getDate() ==(null)){
+        else if(dtPickDateEdition.getDate() ==(null)){
             JOptionPane.showMessageDialog(this, "Date du Jour non sélectionnée", "Erreur : Manque d'informations", JOptionPane.ERROR_MESSAGE);
         }
         else if((dtPickDateDebut.getDate() == null)){
@@ -291,10 +374,10 @@ public class FenetreConvention extends javax.swing.JFrame {
         else if(dtPickDateFin.getDate() == null){
             JOptionPane.showMessageDialog(this, "Date de fin non sélectionnée", "Erreur : Manque d'informations", JOptionPane.ERROR_MESSAGE);
         }
-        else if(dtPickDateDebut.getDate().before(dtPickDateDuJour.getDate())){
+        else if(dtPickDateDebut.getDate().before(dtPickDateEdition.getDate())){
             JOptionPane.showMessageDialog(this, "Date de début programmée avant Date du jour", "Erreur : Informations incompatibles", JOptionPane.ERROR_MESSAGE);
         }
-        else if(dtPickDateFin.getDate().before(dtPickDateDuJour.getDate())){
+        else if(dtPickDateFin.getDate().before(dtPickDateEdition.getDate())){
             JOptionPane.showMessageDialog(this, "Date de fin programmée avant Date du jour", "Erreur : Informations incompatibles", JOptionPane.ERROR_MESSAGE);
         }
         else if(dtPickDateDebut.getDate().after(dtPickDateFin.getDate())){
@@ -317,7 +400,7 @@ public class FenetreConvention extends javax.swing.JFrame {
             
             docConvention.open();
             Font font = FontFactory.getFont(FontFactory.COURIER, 16, BaseColor.BLACK);
-            Chunk chunk = new Chunk("Convention avec l'entreprise "+cbbEnt.getSelectedItem().toString()+" éditée le "+dtPickDateDuJour.getDate().toString(), font);
+            Chunk chunk = new Chunk("Convention avec l'entreprise "+cbbEnt.getSelectedItem().toString()+" éditée le "+dtPickDateEdition.getDate().toString(), font);
             
             try {
                 docConvention.add(chunk);
@@ -370,13 +453,11 @@ public class FenetreConvention extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbbEnt;
     private javax.swing.JComboBox<String> cbbEtu;
     private org.jdesktop.swingx.JXDatePicker dtPickDateDebut;
-    private org.jdesktop.swingx.JXDatePicker dtPickDateDuJour;
+    private org.jdesktop.swingx.JXDatePicker dtPickDateEdition;
     private org.jdesktop.swingx.JXDatePicker dtPickDateFin;
-    private javax.swing.JDialog jDialog1;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblDateDebut;
-    private javax.swing.JLabel lblDateDuJour;
+    private javax.swing.JLabel lblDateEdition;
     private javax.swing.JLabel lblDateFin;
     private javax.swing.JLabel lblEuro;
     private javax.swing.JLabel lblMontant;
