@@ -360,10 +360,10 @@ public class FenetreConvention extends javax.swing.JFrame {
         else if(cbbEnt.getSelectedItem() == null){
             JOptionPane.showMessageDialog(this, "Aucune entreprise sélectionnée", "Erreur : Manque d'informations", JOptionPane.ERROR_MESSAGE);
         }
-        else if(tfNomProjet.getText() == null){
+        else if(tfNomProjet.getText().trim().equals("")){
             JOptionPane.showMessageDialog(this, "Aucun nom de projet défini", "Erreur : Manque d'informations", JOptionPane.ERROR_MESSAGE);
         }
-        else if(tfTacheProjet.getText() == null){
+        else if(tfTacheProjet.getText().trim().equals("")){
             JOptionPane.showMessageDialog(this, "Aucune tâche définie pour l'étudiant dans ce projet", "Erreur : Manque d'informations", JOptionPane.ERROR_MESSAGE);
         }
         else if(dtPickDateEdition.getDate() ==(null)){
@@ -399,7 +399,7 @@ public class FenetreConvention extends javax.swing.JFrame {
             try {
                 try {
                     if(emplacementSauvegarde != null){
-                        PdfWriter.getInstance(docConvention, new FileOutputStream(new File(emplacementSauvegarde, "Convention"+cbbEnt.getSelectedItem().toString()+cbbEtu.getSelectedItem().toString().replaceAll("\\s", "")+".pdf")));
+                        PdfWriter.getInstance(docConvention, new FileOutputStream(new File(emplacementSauvegarde, "Convention"+cbbEnt.getSelectedItem().toString().replaceAll("\\s", "")+cbbEtu.getSelectedItem().toString().replaceAll("\\s", "")+".pdf")));
                         JOptionPane.showMessageDialog(this, "Votre convention à été sauvegardée dans le dossier\n"+emplacementSauvegarde, "Sauvegarde réussie ! ", JOptionPane.INFORMATION_MESSAGE);
                     }
                     else{
@@ -415,7 +415,7 @@ public class FenetreConvention extends javax.swing.JFrame {
             //edition du contenu du document
             docConvention.open();
             Font font = FontFactory.getFont(FontFactory.COURIER, 16, BaseColor.BLACK);
-            Chunk chunk = new Chunk("Convention avec l'entreprise "+cbbEnt.getSelectedItem().toString()+" éditée le "+dtPickDateEdition.getDate().toString(), font);
+            Chunk chunk = new Chunk("Convention avec l'entreprise "+cbbEnt.getSelectedItem().toString().trim()+" éditée le "+dtPickDateEdition.getDate().toString(), font);
             
             try {
                 docConvention.add(chunk);
