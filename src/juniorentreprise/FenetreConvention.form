@@ -74,44 +74,47 @@
                               <Component id="lblDateFin" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="lblDateDebut" alignment="1" pref="90" max="32767" attributes="0"/>
                           </Group>
+                          <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Component id="dtPickDateFin" min="-2" max="-2" attributes="0"/>
+                                      <Component id="dtPickDateDebut" min="-2" max="-2" attributes="0"/>
+                                      <Component id="dtPickDateEdition" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
                                   <Component id="spinMontant" max="32767" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="lblEuro" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="124" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="dtPickDateFin" min="-2" max="-2" attributes="0"/>
-                                      <Component id="dtPickDateDebut" min="-2" max="-2" attributes="0"/>
-                                  </Group>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="lblDateEdition" min="-2" pref="90" max="-2" attributes="0"/>
+                              <Component id="lblNomProjet" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblNomEtu" alignment="0" min="-2" pref="89" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Component id="cbbEtu" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <Component id="tfNomProjet" min="-2" pref="210" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
                               </Group>
                           </Group>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="lblNomEtu" min="-2" pref="89" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="cbbEtu" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="lblDateEdition" min="-2" pref="90" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="dtPickDateEdition" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <EmptySpace min="0" pref="107" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Component id="lblNomEnt" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="cbbEnt" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="91" max="32767" attributes="0"/>
+                  <EmptySpace pref="82" max="32767" attributes="0"/>
                   <Component id="pnlBoutons" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -127,30 +130,25 @@
                   </Group>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Component id="sepHautDePage" min="-2" pref="10" max="-2" attributes="0"/>
+                  <EmptySpace min="7" pref="7" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="pnlBoutons" alignment="0" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
-                          <Component id="pnlBoutons" max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="lblNomEtu" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lblNomEnt" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="cbbEnt" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <Group type="102" attributes="0">
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="cbbEtu" min="-2" max="-2" attributes="0"/>
-                              </Group>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lblNomEtu" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblNomEnt" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cbbEnt" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cbbEtu" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="lblDateEdition" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="dtPickDateEdition" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="tfNomProjet" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblNomProjet" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="lblDateEdition" min="-2" max="-2" attributes="0"/>
+                              <Component id="dtPickDateEdition" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -168,7 +166,7 @@
                               <Component id="spinMontant" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="lblEuro" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="381" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -315,7 +313,7 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="405" max="32767" attributes="0"/>
                       <Component id="btnMod" min="-2" pref="51" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btnGen" min="-2" max="-2" attributes="0"/>
@@ -351,6 +349,16 @@
         <Component class="org.jdesktop.swingx.JXDatePicker" name="dtPickDateDebut">
         </Component>
         <Component class="org.jdesktop.swingx.JXDatePicker" name="dtPickDateFin">
+        </Component>
+        <Component class="javax.swing.JTextField" name="tfNomProjet">
+          <Properties>
+            <Property name="toolTipText" type="java.lang.String" value="Nom du projet"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblNomProjet">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Saisir le nom du projet"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>
