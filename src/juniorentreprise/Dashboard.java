@@ -1024,21 +1024,29 @@ public class Dashboard extends javax.swing.JFrame {
             String myPrenom = tfJEPrenom.getText();
             String myMail = tfJEMail.getText();
             String myTel = tfJETel.getText();
-            if(!myLogin.equals("") && !myPass.equals("") && myPass.equals(myConfirm) && !myNom.equals("") && !myPrenom.equals("") &&
-                !myMail.equals("") && !myTel.equals("") && myMail.matches("^[_a-z0-9-]+(\\.[_a-z0-9-]+)*@[a-z0-9-]+(\\.[a-z0-9-]+)+$"))
+            if(myLogin.equals("") || myPass.equals("") || myNom.equals("") || myPrenom.equals("") ||
+                myMail.equals("") || myTel.equals(""))
+            {
+                JOptionPane.showMessageDialog(null, "Complétez tous les champs" ,"Erreur", 2);
+            }
+            else if(!myMail.matches("^[_a-z0-9-]+(\\.[_a-z0-9-]+)*@[a-z0-9-]+(\\.[a-z0-9-]+)+$"))
+            {
+                JOptionPane.showMessageDialog(null, "Adresse mail doit être au format abc@mail.xx" ,"Erreur", 2);
+            }
+            else if (!myPass.equals(myConfirm)){
+                JOptionPane.showMessageDialog(null, "La confirmation du mot de passe ne correspond pas au mot de passe" ,"Erreur", 2);
+            }
+            else
             {
                 String insert="INSERT INTO MembreJE (Nom,Prenom,Email,Tel,Poste,Login,Password) VALUES('"+ tfJENom.getText() +"','"+ tfJEPrenom.getText() +"','"+ tfJEMail.getText()
                 +"','"+ tfJETel.getText() +"','"+ defautPosteJE +"','"+ tfLogin.getText() +"','"+ myPass +"');";
                 stmt.executeUpdate(insert);//update pour des requetes INSERT, UPDATE, DELETE
                 JOptionPane.showMessageDialog(null, "Inscription réussie" ,"Inscription", 1);
-            }
-            else
-            {
-                JOptionPane.showMessageDialog(null, "Erreur" ,"Error", 1);
+                dialogInscr.dispose();
             }
 
         }
-        catch(Exception e)
+        catch(HeadlessException | ClassNotFoundException | SQLException e)
         {
             JOptionPane.showMessageDialog(null, e.getMessage() ,"Error", 1);
 
@@ -1116,20 +1124,32 @@ public class Dashboard extends javax.swing.JFrame {
             String EtuFormation = tfAjoutEtudFormation.getText();
             String EtuNumSS = tfAjoutEtudSS.getText();
             
-            if(!EtuNom.equals("") && !EtuPrenom.equals("") && !EtuAdresse.equals("") && !EtuCP.equals("") &&
-                !EtuVille.equals("") && !EtuPays.equals("") && !EtuMail.equals("") && EtuMail.matches("^[_a-z0-9-]+(\\.[_a-z0-9-]+)*@[a-z0-9-]+(\\.[a-z0-9-]+)+$")
-                && !EtuTel.equals("") && EtuTel.matches("^0[1-9][0-9]{8}$") && !EtuSexe.equals("") && !EtuNaissance.equals("") && !EtuAnnee.equals("") && !EtuFormation.equals("") 
-                && !EtuNumSS.equals("") //&& EtuNumSS.matches("^[1-3][0-9]{4}(2[AB]|[0-9]{2})[0-9]{6}$")
+            if(EtuNom.equals("") || EtuPrenom.equals("") || EtuAdresse.equals("") || EtuCP.equals("") ||
+                EtuVille.equals("") || EtuPays.equals("") || EtuMail.equals("") || EtuTel.equals("") && EtuTel.matches("^0[1-9][0-9]{8}$") || EtuSexe.equals("") || EtuNaissance.equals("") || EtuAnnee.equals("") || EtuFormation.equals("") 
+                || EtuNumSS.equals("") //&& EtuNumSS.matches("^[1-3][0-9]{4}(2[AB]|[0-9]{2})[0-9]{6}$")
                )
+            {
+                JOptionPane.showMessageDialog(null, "Il faut remplir tous les champs " ,"Erreur", 3);
+            }
+            else if (!EtuMail.matches("^[_a-z0-9-]+(\\.[_a-z0-9-]+)*@[a-z0-9-]+(\\.[a-z0-9-]+)+$"))
+            {
+                JOptionPane.showMessageDialog(null, "L'adresse mail doit être au format xxx@xxx.xxx " ,"Erreur", 3);
+            }
+            else if (!EtuTel.matches("^0[1-9][0-9]{8}$"))
+            {
+                JOptionPane.showMessageDialog(null, "Le téléphone doit avoir 10 chiffres " ,"Erreur", 3);
+            }
+             else if (!EtuNaissance.matches("[0-9]{4}-[0-9]{2}-[0-9]{2}"))
+            {
+                JOptionPane.showMessageDialog(null, "La date de naissance doit être au format aaaa-mm-jj pour la base de données " ,"Erreur", 3);
+            }
+            else
             {
                 String insert="INSERT INTO Etudiant (NomEtudiant,Prenom,Adresse,CodePostal,Ville,Pays,Email,Telephone,Sexe,DateNaissance,AnneeFormation,Formation, NumSS) VALUES('"+ EtuNom +"','"+ EtuPrenom +"','"+ EtuAdresse +"','"+ EtuCP +"','"+ EtuVille +"','"
                         + EtuPays +"','"+ EtuMail +"','"+ EtuTel +"','"+ EtuSexe +"','"+ EtuNaissance +"','"+ EtuAnnee +"','"+ EtuFormation +"','"+ EtuNumSS +"');";
                 stmt.executeUpdate(insert);//update pour des requetes INSERT, UPDATE, DELETE
                 JOptionPane.showMessageDialog(null, "Ajout de l'étudiant à la base de données réussi" ,"Ajout d'un étudiant", 1);
-            }
-            else
-            {
-                JOptionPane.showMessageDialog(null, "Il faut remplir tous les champs correctement" ,"Erreur", 3);
+                dialogAjoutEtud.dispose();
             }
 
         }

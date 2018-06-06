@@ -23,6 +23,7 @@ public class menuConnexionStartProgramme extends javax.swing.JFrame {
      */
     public menuConnexionStartProgramme() {
         initComponents();
+        this.getRootPane().setDefaultButton(bt_Connexion);
     }
 
     /**

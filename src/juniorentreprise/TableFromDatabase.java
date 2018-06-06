@@ -79,6 +79,7 @@ public class TableFromDatabase
         }
 
         //  Create table with database data
+        
 
         DefaultTableModel model = new DefaultTableModel(data, columnNames)
         {
@@ -118,3 +119,4 @@ public class TableFromDatabase
         frame.setVisible(true);
     }*/
 }
+
