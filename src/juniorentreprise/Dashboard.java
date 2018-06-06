@@ -12,11 +12,10 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import javax.swing.ImageIcon;
 import javax.swing.JDialog;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.YES_NO_CANCEL_OPTION;
+import javax.swing.JTable;
 
 
 
@@ -26,6 +25,8 @@ import static javax.swing.JOptionPane.YES_NO_CANCEL_OPTION;
  */
 public class Dashboard extends javax.swing.JFrame {
 
+    private JTable tabEtudiant, tabEntreprise, tabProjet;
+    private TableFromDatabase tfd;
     /**
      * @param args the command line arguments
      */
@@ -55,6 +56,7 @@ public class Dashboard extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new Dashboard().setVisible(true);
             }
@@ -65,12 +67,12 @@ public class Dashboard extends javax.swing.JFrame {
      * Creates new form Dashboard
      */
     public Dashboard() {
+        tfd = new TableFromDatabase();
+        tabEtudiant = tfd.createTable("Etudiant");
+        tabEntreprise = tfd.createTable("Entreprise");
+        tabProjet = tfd.createTable("Projet");
         initComponents();
-        //calendrier = new Calendrier(1,1,5,2018,pnlCalend);
-        //pnlCalend.add(calendrier);
-        JLabel image = new JLabel( new ImageIcon( "images/logoJE.jpg")); 
-        add(image);
-         
+
     }
 
     /**
@@ -149,29 +151,23 @@ public class Dashboard extends javax.swing.JFrame {
         taRappel = new javax.swing.JTextArea();
         pnlCalend = new javax.swing.JPanel();
         jXMonthView1 = new org.jdesktop.swingx.JXMonthView();
-        jXImageView1 = new org.jdesktop.swingx.JXImageView();
-        jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
         pnlEtud = new javax.swing.JPanel();
-        spTabEtud = new javax.swing.JScrollPane();
-        tabEtud = new javax.swing.JTable();
         spAlphaEtud = new javax.swing.JScrollPane();
         ListAlphaEtud = new javax.swing.JList<>();
         sfEtud = new org.jdesktop.swingx.JXSearchField();
         btnAjoutEtud = new javax.swing.JButton();
         btnSupprEtud = new javax.swing.JButton();
+        spEtudiant = new javax.swing.JScrollPane(tabEtudiant);
         pnlClient = new javax.swing.JPanel();
-        jScrollPane6 = new javax.swing.JScrollPane();
-        tabClient = new javax.swing.JTable();
         jTextField3 = new javax.swing.JTextField();
+        spEntreprise = new javax.swing.JScrollPane(tabEntreprise);
         jScrollPane7 = new javax.swing.JScrollPane();
         jList2 = new javax.swing.JList<>();
         pnlProjet = new javax.swing.JPanel();
-        jScrollPane8 = new javax.swing.JScrollPane();
-        tabProjet = new javax.swing.JTable();
         jTextField4 = new javax.swing.JTextField();
         jScrollPane9 = new javax.swing.JScrollPane();
         jList3 = new javax.swing.JList<>();
+        spProjet = new javax.swing.JScrollPane(tabProjet);
         pnlDocs = new javax.swing.JPanel();
         btnConvention = new javax.swing.JButton();
         btnIndemnisation = new javax.swing.JButton();
@@ -517,6 +513,7 @@ public class Dashboard extends javax.swing.JFrame {
 
         taRappel.setColumns(20);
         taRappel.setRows(5);
+        taRappel.setText("- Afficher les résultats\n dans la table");
         jScrollPane4.setViewportView(taRappel);
 
         javax.swing.GroupLayout pnlRappelLayout = new javax.swing.GroupLayout(pnlRappel);
@@ -548,50 +545,11 @@ public class Dashboard extends javax.swing.JFrame {
         pnlCalend.setLayout(pnlCalendLayout);
         pnlCalendLayout.setHorizontalGroup(
             pnlCalendLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jXMonthView1, javax.swing.GroupLayout.PREFERRED_SIZE, 234, Short.MAX_VALUE)
+            .addComponent(jXMonthView1, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
         );
         pnlCalendLayout.setVerticalGroup(
             pnlCalendLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jXMonthView1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, Short.MAX_VALUE)
-        );
-
-        jXImageView1.setBackground(new java.awt.Color(204, 255, 255));
-
-        javax.swing.GroupLayout jXImageView1Layout = new javax.swing.GroupLayout(jXImageView1);
-        jXImageView1.setLayout(jXImageView1Layout);
-        jXImageView1Layout.setHorizontalGroup(
-            jXImageView1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        jXImageView1Layout.setVerticalGroup(
-            jXImageView1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 592, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 432, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jXMonthView1, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout pnlAccueilLayout = new javax.swing.GroupLayout(pnlAccueil);
@@ -599,11 +557,7 @@ public class Dashboard extends javax.swing.JFrame {
         pnlAccueilLayout.setHorizontalGroup(
             pnlAccueilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlAccueilLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(4, 4, 4)
-                .addComponent(jXImageView1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 404, Short.MAX_VALUE)
+                .addContainerGap(620, Short.MAX_VALUE)
                 .addGroup(pnlAccueilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(pnlCalend, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pnlRappel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -612,42 +566,14 @@ public class Dashboard extends javax.swing.JFrame {
         pnlAccueilLayout.setVerticalGroup(
             pnlAccueilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlAccueilLayout.createSequentialGroup()
-                .addGroup(pnlAccueilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlAccueilLayout.createSequentialGroup()
-                        .addGap(72, 72, 72)
-                        .addComponent(jXImageView1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlAccueilLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(pnlAccueilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(pnlRappel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap()
+                .addComponent(pnlRappel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(pnlCalend, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(82, Short.MAX_VALUE))
         );
 
         tpOnglets.addTab("Accueil", pnlAccueil);
-
-        tabEtud.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "Avatar", "Identifiant", "Nom", "Prénom", "Date inscription"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        spTabEtud.setViewportView(tabEtud);
 
         ListAlphaEtud.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
@@ -687,9 +613,9 @@ public class Dashboard extends javax.swing.JFrame {
                 .addGroup(pnlEtudLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlEtudLayout.createSequentialGroup()
                         .addGroup(pnlEtudLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(sfEtud, javax.swing.GroupLayout.DEFAULT_SIZE, 805, Short.MAX_VALUE)
-                            .addComponent(spTabEtud))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(sfEtud, javax.swing.GroupLayout.DEFAULT_SIZE, 810, Short.MAX_VALUE)
+                            .addComponent(spEtudiant))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(spAlphaEtud, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pnlEtudLayout.createSequentialGroup()
                         .addComponent(btnAjoutEtud, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -713,32 +639,11 @@ public class Dashboard extends javax.swing.JFrame {
                             .addComponent(btnAjoutEtud)
                             .addComponent(btnSupprEtud))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(spTabEtud, javax.swing.GroupLayout.PREFERRED_SIZE, 441, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(spEtudiant, javax.swing.GroupLayout.PREFERRED_SIZE, 441, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
         tpOnglets.addTab("Etudiants", pnlEtud);
-
-        tabClient.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "Avatar", "Identifiant", "Nom", "Prénom", "Date inscription"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        jScrollPane6.setViewportView(tabClient);
 
         jTextField3.setText("Barre de recherche (à réaliser)");
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
@@ -763,11 +668,11 @@ public class Dashboard extends javax.swing.JFrame {
                 .addGroup(pnlClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlClientLayout.createSequentialGroup()
                         .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 521, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(56, 345, Short.MAX_VALUE))
                     .addGroup(pnlClientLayout.createSequentialGroup()
-                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 820, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 27, Short.MAX_VALUE)
+                        .addComponent(spEntreprise)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
         );
         pnlClientLayout.setVerticalGroup(
@@ -775,35 +680,14 @@ public class Dashboard extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlClientLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addGroup(pnlClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane7)
-                    .addComponent(jScrollPane6))
+                    .addComponent(spEntreprise, javax.swing.GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
         tpOnglets.addTab("Clients", pnlClient);
-
-        tabProjet.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "Avatar", "Identifiant", "Nom", "Prénom", "Date inscription"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        jScrollPane8.setViewportView(tabProjet);
 
         jTextField4.setText("Barre de recherche (à réaliser)");
         jTextField4.addActionListener(new java.awt.event.ActionListener() {
@@ -826,24 +710,22 @@ public class Dashboard extends javax.swing.JFrame {
             .addGroup(pnlProjetLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlProjetLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 521, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(pnlProjetLayout.createSequentialGroup()
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 521, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(pnlProjetLayout.createSequentialGroup()
-                        .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 820, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 27, Short.MAX_VALUE)
-                        .addContainerGap())))
+                        .addComponent(spProjet, javax.swing.GroupLayout.PREFERRED_SIZE, 774, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
         pnlProjetLayout.setVerticalGroup(
             pnlProjetLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlProjetLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlProjetLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane9)
-                    .addComponent(jScrollPane8))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                .addGroup(pnlProjetLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 421, Short.MAX_VALUE)
+                    .addComponent(spProjet))
                 .addContainerGap())
         );
 
@@ -1265,15 +1147,15 @@ public class Dashboard extends javax.swing.JFrame {
             Connection con = DriverManager.getConnection("jdbc:mysql://iutdoua-web.univ-lyon1.fr:3306/p1702775", "p1702775", "296054");
             Statement stmt=(Statement)con.createStatement();
             //On vérifie que l'utilisateur à sélectionné une ligne
-            if(tabEtud.getSelectedRow()==-1)
+            if(tabEtudiant.getSelectedRow()==-1)
             {
                 //Si il n'y a pa de lignes selectionnées, on affiche un warning
                 JOptionPane.showMessageDialog(this, "Selectionnez d'abord la ou les lignes à supprimer" ,"Erreur", 2);
             }else{
                 //Tant qu'il y a des lignes selectionnées, on les supprime
                 
-                while(tabEtud.getSelectedRow()!=-1){ //getSelectedRow() retourne -1 si rien n'est sélectionné
-                    String delete = "DELETE FROM ETUDIANT WHERE IDETUDIANT="+tabEtud.getSelectedRow()+";";
+                while(tabEtudiant.getSelectedRow()!=-1){ //getSelectedRow() retourne -1 si rien n'est sélectionné
+                    String delete = "DELETE FROM ETUDIANT WHERE IDETUDIANT="+tabEtudiant.getSelectedRow()+";";
                     stmt.executeUpdate(delete);
                 }
             }
@@ -1327,17 +1209,12 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JList<String> jList2;
     private javax.swing.JList<String> jList3;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
-    private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JToggleButton jToggleButton1;
-    private org.jdesktop.swingx.JXImageView jXImageView1;
     private org.jdesktop.swingx.JXLoginPane jXLoginPane;
     private org.jdesktop.swingx.JXMonthView jXMonthView1;
     private javax.swing.JLabel lblAjoutEtudAdresse;
@@ -1388,12 +1265,11 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JPanel pnlRappel;
     private org.jdesktop.swingx.JXSearchField sfEtud;
     private javax.swing.JScrollPane spAlphaEtud;
-    private javax.swing.JScrollPane spTabEtud;
+    private javax.swing.JScrollPane spEntreprise;
+    private javax.swing.JScrollPane spEtudiant;
+    private javax.swing.JScrollPane spProjet;
     private javax.swing.JSpinner spinAjoutEtudAnnee;
     private javax.swing.JTextArea taRappel;
-    private javax.swing.JTable tabClient;
-    private javax.swing.JTable tabEtud;
-    private javax.swing.JTable tabProjet;
     private javax.swing.JTextField tfAjoutEtudAdresse;
     private javax.swing.JTextField tfAjoutEtudCP;
     private javax.swing.JTextField tfAjoutEtudFormation;

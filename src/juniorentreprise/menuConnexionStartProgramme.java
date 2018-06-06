@@ -147,8 +147,8 @@ public class menuConnexionStartProgramme extends javax.swing.JFrame {
                 System.out.println("Données retournées par la requête : id = " + idUtilisateur + ", email = " + emailUtilisateur
                     + ", motdepasse = "
                     + motDePasseUtilisateur + ", nom = " + nomUtilisateur + "." );
-                JOptionPane.showMessageDialog(null, "Connexion réussie !" ,"Connexion", 1);
-               // this.dispose();
+            
+               this.dispose();
                Dashboard dashb = new Dashboard();
                dashb.setVisible(true);
             }
@@ -158,14 +158,14 @@ public class menuConnexionStartProgramme extends javax.swing.JFrame {
 
             /* Traiter ici les valeurs récupérées. */
         } catch ( Exception e ) {
-            JOptionPane.showMessageDialog(null, e.getMessage() ,"Error", 1);
+            JOptionPane.showMessageDialog(null, "Erreur : "+e.getMessage() ,"Error", 1);
         } finally {
             if ( resultat != null ) {
                 try {
                     /* On commence par fermer le ResultSet */
                     resultat.close();
                 } catch ( SQLException ignore ) {
-                    JOptionPane.showMessageDialog(null, ignore.getMessage() ,"Error", 1);
+                    JOptionPane.showMessageDialog(null, "Serveur indisponible : "+ignore.getMessage() ,"Error", 1);
                 }
             }
             if ( statement != null ) {
