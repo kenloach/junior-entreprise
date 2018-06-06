@@ -5,8 +5,21 @@
  */
 package juniorentreprise;
 
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Chunk;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.pdf.PdfWriter;
 import java.awt.Dimension;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.Box;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 /**
@@ -32,6 +45,8 @@ public class FenetreIndemnisation extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        fileChooser = new javax.swing.JFileChooser();
+        logoJE = new javax.swing.JLabel();
         pnlVersements = new javax.swing.JPanel();
         lbl_frais_dep = new javax.swing.JLabel();
         tf_frais_depl = new javax.swing.JTextField();
@@ -43,6 +58,7 @@ public class FenetreIndemnisation extends javax.swing.JFrame {
         tf_frais_divers = new javax.swing.JTextField();
         bt_calc_total_indemn = new javax.swing.JButton();
         tf_frais_totaux = new javax.swing.JTextField();
+        tf_frais_totaux.setEditable(false);
         bt_indemn = new javax.swing.JButton();
         bt_vider_indemn = new javax.swing.JButton();
         pnlIndemn = new javax.swing.JPanel();
@@ -54,13 +70,25 @@ public class FenetreIndemnisation extends javax.swing.JFrame {
         tf_code_indemn = new javax.swing.JTextField();
         lbl_date_indemn = new javax.swing.JLabel();
         tf_date_indemn = new org.jdesktop.swingx.JXDatePicker();
+        sepHautDePage = new javax.swing.JSeparator();
+        lblTitre = new javax.swing.JLabel();
+
+        fileChooser.setAccessory(bt_indemn);
+        fileChooser.setDialogType(javax.swing.JFileChooser.SAVE_DIALOG);
+        fileChooser.setApproveButtonText("");
+        fileChooser.setApproveButtonToolTipText("");
+        fileChooser.setCurrentDirectory(new java.io.File("C:\\Users"));
+        fileChooser.setDialogTitle("Sauvegarde du document d'indemnisation");
+        fileChooser.setFileSelectionMode(javax.swing.JFileChooser.DIRECTORIES_ONLY);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gestion Indemnisation");
 
+        logoJE.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/JE_logo.png"))); // NOI18N
+
         pnlVersements.setBackground(new java.awt.Color(204, 255, 204));
         pnlVersements.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Versements", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 2, 14))); // NOI18N
-        pnlVersements.setLayout(new java.awt.GridLayout(8, 2, 10, 20));
+        pnlVersements.setLayout(new java.awt.GridLayout(7, 2, 10, 20));
 
         lbl_frais_dep.setText("Frais déplacements");
         pnlVersements.add(lbl_frais_dep);
@@ -99,6 +127,7 @@ public class FenetreIndemnisation extends javax.swing.JFrame {
         });
         pnlVersements.add(bt_calc_total_indemn);
 
+        tf_frais_totaux.setText("0");
         tf_frais_totaux.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tf_frais_totauxActionPerformed(evt);
@@ -122,7 +151,7 @@ public class FenetreIndemnisation extends javax.swing.JFrame {
         });
         pnlVersements.add(bt_vider_indemn);
 
-        pnlIndemn.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        pnlIndemn.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Informations", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
         pnlIndemn.setLayout(new java.awt.GridLayout(5, 2, 10, 20));
 
         lbl_num_proj_indemn.setText("N° projet");
@@ -153,28 +182,46 @@ public class FenetreIndemnisation extends javax.swing.JFrame {
         pnlIndemn.add(lbl_date_indemn);
         pnlIndemn.add(tf_date_indemn);
 
+        lblTitre.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        lblTitre.setText("Gestion des Indemnisations");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addComponent(pnlIndemn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(pnlVersements, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(85, 85, 85))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addComponent(pnlIndemn, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(pnlVersements, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(38, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(logoJE, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblTitre)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(sepHautDePage))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(28, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(pnlIndemn, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(185, 185, 185))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(pnlVersements, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(83, 83, 83))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(logoJE, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(pnlIndemn, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblTitre)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(sepHautDePage, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(pnlVersements, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         pack();
@@ -190,7 +237,48 @@ public class FenetreIndemnisation extends javax.swing.JFrame {
     }//GEN-LAST:event_tf_frais_deplActionPerformed
 
     private void bt_indemnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_indemnActionPerformed
-        // TODO add your handling code here:
+        
+        if(tf_date_indemn.getDate()== null || tf_num_proj_indemn.getText().equals("")|| tf_nom_etu_indemn.getText().equals("")|| tf_code_indemn.getText().equals(""))
+            JOptionPane.showMessageDialog(rootPane, "Toutes les informations ne sont pas remplies", "Erreur : saisie erronée", JOptionPane.ERROR_MESSAGE);
+        else{
+            double total = Double.parseDouble(tf_frais_totaux.getText());
+            System.out.println("total = "+total);
+            if(total<=0){
+                JOptionPane.showMessageDialog(rootPane, "Le total de l'indemnisation ne peut pas être négatif ou nul", "Erreur : saisie erronée", JOptionPane.ERROR_MESSAGE);
+            }
+            else{
+            //creation du document dans un emplacement choisi par l'utilisateur
+                String emplacementSauvegarde = (fileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) ? fileChooser.getSelectedFile().toString() : null ;
+                Document docIndemnisation = new Document();
+                try {
+                try {
+                    if(emplacementSauvegarde != null){
+                        PdfWriter.getInstance(docIndemnisation, new FileOutputStream(new File(emplacementSauvegarde, "Indemnisation"+tf_code_indemn.toString().replaceAll("\\s", "")+".pdf")));
+                        JOptionPane.showMessageDialog(this, "Votre fichier d'indemnisation à été sauvegardée dans le dossier\n"+emplacementSauvegarde, "Sauvegarde réussie ! ", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(this, "Aucun dossier sélectionné", "Erreur : Manque d'informations", JOptionPane.ERROR_MESSAGE);
+                    }
+                } catch (DocumentException ex) {
+                    Logger.getLogger(FenetreConvention.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(FenetreConvention.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            //edition du contenu du document
+            docIndemnisation.open();
+            Font font = FontFactory.getFont(FontFactory.COURIER, 16, BaseColor.BLACK);
+            Chunk chunk = new Chunk("Indemnisation n°"+tf_code_indemn.getText()+" de l'étudiant "+tf_nom_etu_indemn.getText()+" sur le projet n°"+ tf_num_proj_indemn.getText()+" éditée le "+tf_date_indemn.getDate().toString(), font);
+            
+            try {
+                docIndemnisation.add(chunk);
+            } catch (DocumentException ex) {
+                Logger.getLogger(FenetreConvention.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            docIndemnisation.close();
+            }
+        }
     }//GEN-LAST:event_bt_indemnActionPerformed
 
     private void tf_num_proj_indemnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_num_proj_indemnActionPerformed
@@ -199,24 +287,20 @@ public class FenetreIndemnisation extends javax.swing.JFrame {
 
     // Réinitialise les champs
     private void bt_vider_indemnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_vider_indemnActionPerformed
-        tf_frais_depl.setText("");
-        tf_frais_fonct.setText("");
-        tf_salaire.setText("");
-        tf_frais_divers.setText("");
-        tf_frais_totaux.setText("");
+        tf_frais_depl.setText("0");
+        tf_frais_fonct.setText("0");
+        tf_salaire.setText("0");
+        tf_frais_divers.setText("0");
+        tf_frais_totaux.setText("0");
         tf_num_proj_indemn.setText("");
         tf_nom_etu_indemn.setText("");
         tf_code_indemn.setText("");
     }//GEN-LAST:event_bt_vider_indemnActionPerformed
 
-    private void tf_frais_totauxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_frais_totauxActionPerformed
-       
-    }//GEN-LAST:event_tf_frais_totauxActionPerformed
-
     private void bt_calc_total_indemnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_calc_total_indemnActionPerformed
         double v1, v2, v3, v4;
         
-        if(!tf_frais_depl.getText().matches("[0-9]+$")){
+        if(!tf_frais_depl.getText().matches("[0-9]+$") || !tf_salaire.getText().matches("[0-9]+$")){
             JOptionPane.showMessageDialog(rootPane, "Tous les champs ne doivent contenir que des nombres", "Erreur : saisie erronée", JOptionPane.ERROR_MESSAGE);
         }
         else{
@@ -228,21 +312,11 @@ public class FenetreIndemnisation extends javax.swing.JFrame {
             s = v1+v2+v3+v4;
             tf_frais_totaux.setText(String.valueOf(s));
         }
-        /*
-        double v1, v2, v3, v4;
-        v1 = Double.valueOf(tf_frais_depl.getText());
-        v2 = Double.valueOf(tf_frais_fonct.getText());
-        v3 = Double.valueOf(tf_salaire.getText());
-        v4 = Double.valueOf(tf_frais_divers.getText());
-        double s;
-        s = v1+v2+v3+v4;
-        tf_frais_totaux.setText(String.valueOf(s));
-        
-        
-        else if(!txtFieldPrix.getText().matches("[0-9]+$")){
-            JOptionPane.showMessageDialog(rootPane, "Le prix ne doit contenir que des nombres", "Erreur : saisie erronée", JOptionPane.ERROR_MESSAGE);
-        }*/
     }//GEN-LAST:event_bt_calc_total_indemnActionPerformed
+
+    private void tf_frais_totauxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_frais_totauxActionPerformed
+
+    }//GEN-LAST:event_tf_frais_totauxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -283,6 +357,8 @@ public class FenetreIndemnisation extends javax.swing.JFrame {
     private javax.swing.JButton bt_calc_total_indemn;
     private javax.swing.JButton bt_indemn;
     private javax.swing.JButton bt_vider_indemn;
+    private javax.swing.JFileChooser fileChooser;
+    private javax.swing.JLabel lblTitre;
     private javax.swing.JLabel lbl_code_indemn;
     private javax.swing.JLabel lbl_date_indemn;
     private javax.swing.JLabel lbl_divers;
@@ -291,8 +367,10 @@ public class FenetreIndemnisation extends javax.swing.JFrame {
     private javax.swing.JLabel lbl_nom_etu_indemn;
     private javax.swing.JLabel lbl_num_proj_indemn;
     private javax.swing.JLabel lbl_salaire;
+    private javax.swing.JLabel logoJE;
     private javax.swing.JPanel pnlIndemn;
     private javax.swing.JPanel pnlVersements;
+    private javax.swing.JSeparator sepHautDePage;
     private javax.swing.JTextField tf_code_indemn;
     private org.jdesktop.swingx.JXDatePicker tf_date_indemn;
     private javax.swing.JTextField tf_frais_depl;
