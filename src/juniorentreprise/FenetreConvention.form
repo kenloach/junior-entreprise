@@ -82,7 +82,7 @@
                                       <Component id="dtPickDateDebut" min="-2" max="-2" attributes="0"/>
                                       <Component id="dtPickDateEdition" alignment="1" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  <EmptySpace min="0" pref="94" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
                                   <Component id="spinMontant" max="32767" attributes="0"/>
@@ -97,6 +97,7 @@
                               <Component id="lblDateEdition" min="-2" pref="90" max="-2" attributes="0"/>
                               <Component id="lblNomProjet" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="lblNomEtu" alignment="0" min="-2" pref="89" max="-2" attributes="0"/>
+                              <Component id="lblTacheProjet" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -105,7 +106,10 @@
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
-                                  <Component id="tfNomProjet" min="-2" pref="210" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="tfNomProjet" pref="210" max="32767" attributes="0"/>
+                                      <Component id="tfTacheProjet" max="32767" attributes="0"/>
+                                  </Group>
                                   <EmptySpace max="32767" attributes="0"/>
                               </Group>
                           </Group>
@@ -145,7 +149,12 @@
                               <Component id="tfNomProjet" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="lblNomProjet" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lblTacheProjet" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="tfTacheProjet" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Component id="lblDateEdition" min="-2" max="-2" attributes="0"/>
                               <Component id="dtPickDateEdition" min="-2" max="-2" attributes="0"/>
@@ -358,6 +367,16 @@
         <Component class="javax.swing.JLabel" name="lblNomProjet">
           <Properties>
             <Property name="text" type="java.lang.String" value="Saisir le nom du projet"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblTacheProjet">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="T&#xe2;che &#xe0; accomplir"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="tfTacheProjet">
+          <Properties>
+            <Property name="toolTipText" type="java.lang.String" value="Saisir la t&#xe2;che que l&apos;&#xe9;tutiant devra accomplir au cours de la mission"/>
           </Properties>
         </Component>
       </SubComponents>
