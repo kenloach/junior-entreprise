@@ -26,12 +26,14 @@ import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.pdf.PdfWriter;
-import java.io.File;
 import java.io.FileNotFoundException;
+import java.sql.Array;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JFileChooser;
 
 /**
  *
@@ -156,8 +158,6 @@ public class FenetreConvention extends javax.swing.JFrame {
         dtPickDateFin = new org.jdesktop.swingx.JXDatePicker();
         tfNomProjet = new javax.swing.JTextField();
         lblNomProjet = new javax.swing.JLabel();
-        lblTacheProjet = new javax.swing.JLabel();
-        tfTacheProjet = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -234,10 +234,6 @@ public class FenetreConvention extends javax.swing.JFrame {
 
         lblNomProjet.setText("Saisir le nom du projet");
 
-        lblTacheProjet.setText("Tâche à accomplir");
-
-        tfTacheProjet.setToolTipText("Saisir la tâche que l'étutiant devra accomplir au cours de la mission");
-
         javax.swing.GroupLayout pnlElementsConventionLayout = new javax.swing.GroupLayout(pnlElementsConvention);
         pnlElementsConvention.setLayout(pnlElementsConventionLayout);
         pnlElementsConventionLayout.setHorizontalGroup(
@@ -262,7 +258,7 @@ public class FenetreConvention extends javax.swing.JFrame {
                                     .addComponent(dtPickDateFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(dtPickDateDebut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(dtPickDateEdition, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 94, Short.MAX_VALUE))
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(pnlElementsConventionLayout.createSequentialGroup()
                                 .addComponent(spinMontant)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -272,17 +268,14 @@ public class FenetreConvention extends javax.swing.JFrame {
                         .addGroup(pnlElementsConventionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblDateEdition, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblNomProjet)
-                            .addComponent(lblNomEtu, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblTacheProjet))
+                            .addComponent(lblNomEtu, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(pnlElementsConventionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnlElementsConventionLayout.createSequentialGroup()
                                 .addComponent(cbbEtu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(pnlElementsConventionLayout.createSequentialGroup()
-                                .addGroup(pnlElementsConventionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(tfNomProjet, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
-                                    .addComponent(tfTacheProjet))
+                                .addComponent(tfNomProjet, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addComponent(lblNomEnt)
                 .addGap(18, 18, 18)
@@ -313,11 +306,7 @@ public class FenetreConvention extends javax.swing.JFrame {
                         .addGroup(pnlElementsConventionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(tfNomProjet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblNomProjet))
-                        .addGap(18, 18, 18)
-                        .addGroup(pnlElementsConventionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblTacheProjet)
-                            .addComponent(tfTacheProjet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(22, 22, 22)
+                        .addGap(57, 57, 57)
                         .addGroup(pnlElementsConventionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(lblDateEdition)
                             .addComponent(dtPickDateEdition, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -368,9 +357,6 @@ public class FenetreConvention extends javax.swing.JFrame {
         else if(tfNomProjet.getText() == null){
             JOptionPane.showMessageDialog(this, "Aucun nom de projet défini", "Erreur : Manque d'informations", JOptionPane.ERROR_MESSAGE);
         }
-        else if(tfTacheProjet.getText() == null){
-            JOptionPane.showMessageDialog(this, "Aucune tâche définie pour l'étudiant dans ce projet", "Erreur : Manque d'informations", JOptionPane.ERROR_MESSAGE);
-        }
         else if(dtPickDateEdition.getDate() ==(null)){
             JOptionPane.showMessageDialog(this, "Date du Jour non sélectionnée", "Erreur : Manque d'informations", JOptionPane.ERROR_MESSAGE);
         }
@@ -396,19 +382,10 @@ public class FenetreConvention extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Le nom du projet ne doit contenir que des lettres", "Erreur : Informations incompatibles", JOptionPane.ERROR_MESSAGE);
         }
         else{
-            //creation du document dans un emplacement choisi par l'utilisateur
-            final JFileChooser fcSauvegardeConvention = new JFileChooser();
-            fcSauvegardeConvention.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-            String emplacementSauvegarde = (fcSauvegardeConvention.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) ? fcSauvegardeConvention.getSelectedFile().toString() : null ;
             Document docConvention = new Document();
             try {
                 try {
-                    if(emplacementSauvegarde != null){
-                        PdfWriter.getInstance(docConvention, new FileOutputStream(new File(emplacementSauvegarde, "Convention"+cbbEnt.getSelectedItem().toString()+cbbEtu.getSelectedItem().toString().replaceAll("\\s", "")+".pdf")));
-                    }
-                    else{
-                        JOptionPane.showMessageDialog(this, "Aucun dossier sélectionné", "Erreur : Manque d'informations", JOptionPane.ERROR_MESSAGE);
-                    }
+                    PdfWriter.getInstance(docConvention, new FileOutputStream("Convention"+cbbEnt.getSelectedItem().toString()+".pdf"));
                 } catch (DocumentException ex) {
                     Logger.getLogger(FenetreConvention.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -416,7 +393,6 @@ public class FenetreConvention extends javax.swing.JFrame {
                 Logger.getLogger(FenetreConvention.class.getName()).log(Level.SEVERE, null, ex);
             }
             
-            //edition du contenu du document
             docConvention.open();
             Font font = FontFactory.getFont(FontFactory.COURIER, 16, BaseColor.BLACK);
             Chunk chunk = new Chunk("Convention avec l'entreprise "+cbbEnt.getSelectedItem().toString()+" éditée le "+dtPickDateEdition.getDate().toString(), font);
@@ -427,7 +403,6 @@ public class FenetreConvention extends javax.swing.JFrame {
                 Logger.getLogger(FenetreConvention.class.getName()).log(Level.SEVERE, null, ex);
             }
             docConvention.close();
-            JOptionPane.showMessageDialog(this, "Votre convention à été saufgardée dans le dossier\n"+emplacementSauvegarde, "Sauvegarde réussie ! ", JOptionPane.INFORMATION_MESSAGE);
         }
             
     }//GEN-LAST:event_btnGenActionPerformed
@@ -452,16 +427,19 @@ public class FenetreConvention extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(FenetreConvention.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(FenetreConvention.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(FenetreConvention.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(FenetreConvention.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
             public void run() {
                 new FenetreConvention().setVisible(true);
             }
@@ -485,7 +463,6 @@ public class FenetreConvention extends javax.swing.JFrame {
     private javax.swing.JLabel lblNomEnt;
     private javax.swing.JLabel lblNomEtu;
     private javax.swing.JLabel lblNomProjet;
-    private javax.swing.JLabel lblTacheProjet;
     private javax.swing.JLabel lblTitre;
     private javax.swing.JLabel logoJE;
     private javax.swing.JPanel pnlBoutons;
@@ -493,6 +470,5 @@ public class FenetreConvention extends javax.swing.JFrame {
     private javax.swing.JSeparator sepHautDePage;
     private javax.swing.JSpinner spinMontant;
     private javax.swing.JTextField tfNomProjet;
-    private javax.swing.JTextField tfTacheProjet;
     // End of variables declaration//GEN-END:variables
 }
