@@ -26,14 +26,12 @@ import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.pdf.PdfWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
-import java.sql.Array;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JFileChooser;
 
 /**
  *
@@ -62,7 +60,7 @@ public class FenetreConvention extends javax.swing.JFrame {
             Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection("jdbc:mysql://iutdoua-web.univ-lyon1.fr:3306/p1702775", "p1702775", "296054");
             stmt=(Statement)con.createStatement();
-            String request = "SELECT NomEtudiant FROM Etudiant";
+            String request = "SELECT NomEtudiant, Prenom FROM Etudiant";
             
             /* Exécution d'une requête de lecture */
             resultat =  stmt.executeQuery(request);//query pour des requetes SELECT
@@ -73,28 +71,17 @@ public class FenetreConvention extends javax.swing.JFrame {
             resultat.first();
             DefaultComboBoxModel modCbbEtu = new DefaultComboBoxModel();
             while(!resultat.isAfterLast()){
-                modCbbEtu.addElement(resultat.getString("NomEtudiant"));
+                modCbbEtu.addElement(resultat.getString("NomEtudiant").toUpperCase() +" "+ resultat.getString("Prenom"));
                 resultat.next();
             }
-            
-            
-            
-            /*for(int a = 0; a< nomsEtudiants.length; a++){
-                modCbbEtu.addElement(nomsEtudiants[a]);
-            }*/
-            /*while(itrNomsEtu.hasNext()){
-                modCbbEtu.addElement(itrNomsEtu.next());
-                itrNomsEtu.remove();
-            }*/
             cbbEtu.setModel(modCbbEtu);
             
             //Entreprises
             Statement stmtEnt=(Statement)con.createStatement();
             String requestEnt = "SELECT NomEntreprise FROM Entreprise";
-            System.out.println(requestEnt);
+
             /* Exécution d'une requête de lecture */
             resultat =  stmtEnt.executeQuery(requestEnt);//query pour des requetes SELECT
-            System.out.println(resultat.toString());
             
             DefaultComboBoxModel modCbbEnt = new DefaultComboBoxModel();
             resultat.first();
@@ -102,9 +89,8 @@ public class FenetreConvention extends javax.swing.JFrame {
                 modCbbEnt.addElement(resultat.getString("NomEntreprise"));
                 resultat.next();
             }
-            
-            
             cbbEnt.setModel(modCbbEnt);
+            
 
             /* Traiter ici les valeurs récupérées. */
         } catch ( ClassNotFoundException | SQLException e ) {
@@ -147,9 +133,9 @@ public class FenetreConvention extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        pnlElementsConvention = new javax.swing.JPanel();
+        pnlLogo = new javax.swing.JPanel();
         logoJE = new javax.swing.JLabel();
+        pnlElementsConvention = new javax.swing.JPanel();
         lblTitre = new javax.swing.JLabel();
         lblNomEtu = new javax.swing.JLabel();
         cbbEtu = new javax.swing.JComboBox<>();
@@ -162,28 +148,39 @@ public class FenetreConvention extends javax.swing.JFrame {
         spinMontant = new javax.swing.JSpinner();
         sepHautDePage = new javax.swing.JSeparator();
         pnlBoutons = new javax.swing.JPanel();
-        btnGen = new javax.swing.JButton();
         btnMod = new javax.swing.JButton();
+        btnGen = new javax.swing.JButton();
         lblEuro = new javax.swing.JLabel();
         dtPickDateEdition = new org.jdesktop.swingx.JXDatePicker();
         dtPickDateDebut = new org.jdesktop.swingx.JXDatePicker();
         dtPickDateFin = new org.jdesktop.swingx.JXDatePicker();
+        tfNomProjet = new javax.swing.JTextField();
+        lblNomProjet = new javax.swing.JLabel();
+        lblTacheProjet = new javax.swing.JLabel();
+        tfTacheProjet = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+        logoJE.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/JE_logo.png"))); // NOI18N
+
+        javax.swing.GroupLayout pnlLogoLayout = new javax.swing.GroupLayout(pnlLogo);
+        pnlLogo.setLayout(pnlLogoLayout);
+        pnlLogoLayout.setHorizontalGroup(
+            pnlLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlLogoLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(logoJE, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+        pnlLogoLayout.setVerticalGroup(
+            pnlLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlLogoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(logoJE, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        logoJE.setText("jLabel1");
-
+        lblTitre.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         lblTitre.setText("Edition de Convention");
 
         lblNomEtu.setText("Nom Etudiant");
@@ -207,6 +204,8 @@ public class FenetreConvention extends javax.swing.JFrame {
 
         lblMontant.setText("Montant");
 
+        btnMod.setText("<html>Modifier Texte <br>\nManuellement\n</html>");
+
         btnGen.setText("Générer PDF");
         btnGen.setToolTipText("");
         btnGen.addActionListener(new java.awt.event.ActionListener() {
@@ -215,122 +214,121 @@ public class FenetreConvention extends javax.swing.JFrame {
             }
         });
 
-        btnMod.setText("<html>Modifier Texte <br>\nManuellement\n</html>");
-
         javax.swing.GroupLayout pnlBoutonsLayout = new javax.swing.GroupLayout(pnlBoutons);
         pnlBoutons.setLayout(pnlBoutonsLayout);
         pnlBoutonsLayout.setHorizontalGroup(
             pnlBoutonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlBoutonsLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(pnlBoutonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnGen, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnMod, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addGap(20, 20, 20)
+                .addComponent(btnGen, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(83, 83, 83)
+                .addComponent(btnMod, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         pnlBoutonsLayout.setVerticalGroup(
             pnlBoutonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlBoutonsLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnMod, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnGen)
-                .addGap(41, 41, 41))
+                .addContainerGap()
+                .addGroup(pnlBoutonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnGen, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnMod, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         lblEuro.setText("€");
+
+        tfNomProjet.setToolTipText("Nom du projet");
+
+        lblNomProjet.setText("Saisir le nom du projet");
+
+        lblTacheProjet.setText("Tâche à accomplir");
+
+        tfTacheProjet.setToolTipText("Saisir la tâche que l'étutiant devra accomplir au cours de la mission");
 
         javax.swing.GroupLayout pnlElementsConventionLayout = new javax.swing.GroupLayout(pnlElementsConvention);
         pnlElementsConvention.setLayout(pnlElementsConventionLayout);
         pnlElementsConventionLayout.setHorizontalGroup(
             pnlElementsConventionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(sepHautDePage)
             .addGroup(pnlElementsConventionLayout.createSequentialGroup()
-                .addGap(2, 2, 2)
-                .addComponent(logoJE, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblTitre)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(pnlElementsConventionLayout.createSequentialGroup()
                 .addGroup(pnlElementsConventionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlElementsConventionLayout.createSequentialGroup()
+                    .addGroup(pnlElementsConventionLayout.createSequentialGroup()
+                        .addGroup(pnlElementsConventionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblDateEdition, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblNomProjet)
+                            .addComponent(lblNomEtu, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblTacheProjet))
+                        .addGap(18, 18, 18)
+                        .addGroup(pnlElementsConventionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlElementsConventionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(tfNomProjet, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
+                                .addComponent(tfTacheProjet))
+                            .addGroup(pnlElementsConventionLayout.createSequentialGroup()
+                                .addComponent(cbbEtu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(145, 145, 145)
+                                .addComponent(lblNomEnt)
+                                .addGap(18, 18, 18)
+                                .addComponent(cbbEnt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(pnlElementsConventionLayout.createSequentialGroup()
                         .addGroup(pnlElementsConventionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(lblMontant, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lblDateFin, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblDateDebut, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE))
-                        .addGroup(pnlElementsConventionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnlElementsConventionLayout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(spinMontant)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(lblEuro)
-                                .addGap(124, 124, 124))
-                            .addGroup(pnlElementsConventionLayout.createSequentialGroup()
-                                .addGap(5, 5, 5)
-                                .addGroup(pnlElementsConventionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(dtPickDateFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(dtPickDateDebut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                    .addGroup(pnlElementsConventionLayout.createSequentialGroup()
-                        .addGroup(pnlElementsConventionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnlElementsConventionLayout.createSequentialGroup()
-                                .addComponent(lblNomEtu, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cbbEtu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(pnlElementsConventionLayout.createSequentialGroup()
-                                .addComponent(lblDateEdition, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(dtPickDateEdition, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 107, Short.MAX_VALUE)))
-                .addGap(40, 40, 40)
-                .addComponent(lblNomEnt)
-                .addGap(18, 18, 18)
-                .addComponent(cbbEnt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
-                .addComponent(pnlBoutons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addComponent(sepHautDePage)
+                        .addGap(34, 34, 34)
+                        .addGroup(pnlElementsConventionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(dtPickDateFin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(dtPickDateDebut, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(dtPickDateEdition, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(spinMontant))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblEuro))
+                    .addComponent(pnlBoutons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(179, Short.MAX_VALUE))
         );
         pnlElementsConventionLayout.setVerticalGroup(
             pnlElementsConventionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlElementsConventionLayout.createSequentialGroup()
-                .addGroup(pnlElementsConventionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(logoJE, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblTitre))
+                .addGap(11, 11, 11)
+                .addComponent(lblTitre)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(sepHautDePage, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(pnlElementsConventionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlElementsConventionLayout.createSequentialGroup()
-                        .addGap(7, 7, 7)
-                        .addComponent(pnlBoutons, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(pnlElementsConventionLayout.createSequentialGroup()
-                        .addGroup(pnlElementsConventionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnlElementsConventionLayout.createSequentialGroup()
-                                .addGap(7, 7, 7)
-                                .addGroup(pnlElementsConventionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(lblNomEtu)
-                                    .addComponent(lblNomEnt)
-                                    .addComponent(cbbEnt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(pnlElementsConventionLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cbbEtu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
-                        .addGroup(pnlElementsConventionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblDateEdition)
-                            .addComponent(dtPickDateEdition, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(pnlElementsConventionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblDateDebut)
-                            .addComponent(dtPickDateDebut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(pnlElementsConventionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblDateFin)
-                            .addComponent(dtPickDateFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(pnlElementsConventionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblMontant)
-                            .addComponent(spinMontant, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblEuro))
-                        .addContainerGap(381, Short.MAX_VALUE))))
+                .addGap(7, 7, 7)
+                .addGroup(pnlElementsConventionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblNomEtu)
+                    .addComponent(lblNomEnt)
+                    .addComponent(cbbEnt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbbEtu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(pnlElementsConventionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfNomProjet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblNomProjet))
+                .addGap(18, 18, 18)
+                .addGroup(pnlElementsConventionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblTacheProjet)
+                    .addComponent(tfTacheProjet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22)
+                .addGroup(pnlElementsConventionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblDateEdition)
+                    .addComponent(dtPickDateEdition, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pnlElementsConventionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblDateDebut)
+                    .addComponent(dtPickDateDebut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pnlElementsConventionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblDateFin)
+                    .addComponent(dtPickDateFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pnlElementsConventionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblMontant)
+                    .addComponent(spinMontant, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblEuro))
+                .addGap(51, 51, 51)
+                .addComponent(pnlBoutons, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(54, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -338,24 +336,19 @@ public class FenetreConvention extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pnlLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(pnlElementsConvention, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(pnlElementsConvention, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnlLogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(pnlElementsConvention, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void cbbEtuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbEtuActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbbEtuActionPerformed
 
     private void btnGenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenActionPerformed
         // Verification que toutes les informations sont saisies et cohérnetes
@@ -364,6 +357,12 @@ public class FenetreConvention extends javax.swing.JFrame {
         }
         else if(cbbEnt.getSelectedItem() == null){
             JOptionPane.showMessageDialog(this, "Aucune entreprise sélectionnée", "Erreur : Manque d'informations", JOptionPane.ERROR_MESSAGE);
+        }
+        else if(tfNomProjet.getText() == null){
+            JOptionPane.showMessageDialog(this, "Aucun nom de projet défini", "Erreur : Manque d'informations", JOptionPane.ERROR_MESSAGE);
+        }
+        else if(tfTacheProjet.getText() == null){
+            JOptionPane.showMessageDialog(this, "Aucune tâche définie pour l'étudiant dans ce projet", "Erreur : Manque d'informations", JOptionPane.ERROR_MESSAGE);
         }
         else if(dtPickDateEdition.getDate() ==(null)){
             JOptionPane.showMessageDialog(this, "Date du Jour non sélectionnée", "Erreur : Manque d'informations", JOptionPane.ERROR_MESSAGE);
@@ -386,11 +385,24 @@ public class FenetreConvention extends javax.swing.JFrame {
         else if(Float.parseFloat(spinMontant.getValue().toString()) < 0){
             JOptionPane.showMessageDialog(this, "Le montant ne peut pas être négatif", "Erreur : Informations incompatibles", JOptionPane.ERROR_MESSAGE);
         }
+        else if(tfNomProjet.getText().matches("[\\P{L}]+")){
+            JOptionPane.showMessageDialog(this, "Le nom du projet ne doit contenir que des lettres", "Erreur : Informations incompatibles", JOptionPane.ERROR_MESSAGE);
+        }
         else{
+            //creation du document dans un emplacement choisi par l'utilisateur
+            final JFileChooser fcSauvegardeConvention = new JFileChooser();
+            fcSauvegardeConvention.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+            String emplacementSauvegarde = (fcSauvegardeConvention.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) ? fcSauvegardeConvention.getSelectedFile().toString() : null ;
             Document docConvention = new Document();
             try {
                 try {
-                    PdfWriter.getInstance(docConvention, new FileOutputStream("Convention"+cbbEnt.getSelectedItem().toString()+".pdf"));
+                    if(emplacementSauvegarde != null){
+                        PdfWriter.getInstance(docConvention, new FileOutputStream(new File(emplacementSauvegarde, "Convention"+cbbEnt.getSelectedItem().toString()+cbbEtu.getSelectedItem().toString().replaceAll("\\s", "")+".pdf")));
+                        JOptionPane.showMessageDialog(this, "Votre convention à été sauvegardée dans le dossier\n"+emplacementSauvegarde, "Sauvegarde réussie ! ", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(this, "Aucun dossier sélectionné", "Erreur : Manque d'informations", JOptionPane.ERROR_MESSAGE);
+                    }
                 } catch (DocumentException ex) {
                     Logger.getLogger(FenetreConvention.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -398,6 +410,7 @@ public class FenetreConvention extends javax.swing.JFrame {
                 Logger.getLogger(FenetreConvention.class.getName()).log(Level.SEVERE, null, ex);
             }
             
+            //edition du contenu du document
             docConvention.open();
             Font font = FontFactory.getFont(FontFactory.COURIER, 16, BaseColor.BLACK);
             Chunk chunk = new Chunk("Convention avec l'entreprise "+cbbEnt.getSelectedItem().toString()+" éditée le "+dtPickDateEdition.getDate().toString(), font);
@@ -408,9 +421,14 @@ public class FenetreConvention extends javax.swing.JFrame {
                 Logger.getLogger(FenetreConvention.class.getName()).log(Level.SEVERE, null, ex);
             }
             docConvention.close();
+            
         }
             
     }//GEN-LAST:event_btnGenActionPerformed
+
+    private void cbbEtuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbEtuActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbbEtuActionPerformed
 
     /**
      * @param args the command line arguments
@@ -428,19 +446,16 @@ public class FenetreConvention extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FenetreConvention.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FenetreConvention.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FenetreConvention.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(FenetreConvention.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new FenetreConvention().setVisible(true);
             }
@@ -455,7 +470,6 @@ public class FenetreConvention extends javax.swing.JFrame {
     private org.jdesktop.swingx.JXDatePicker dtPickDateDebut;
     private org.jdesktop.swingx.JXDatePicker dtPickDateEdition;
     private org.jdesktop.swingx.JXDatePicker dtPickDateFin;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblDateDebut;
     private javax.swing.JLabel lblDateEdition;
     private javax.swing.JLabel lblDateFin;
@@ -463,11 +477,16 @@ public class FenetreConvention extends javax.swing.JFrame {
     private javax.swing.JLabel lblMontant;
     private javax.swing.JLabel lblNomEnt;
     private javax.swing.JLabel lblNomEtu;
+    private javax.swing.JLabel lblNomProjet;
+    private javax.swing.JLabel lblTacheProjet;
     private javax.swing.JLabel lblTitre;
     private javax.swing.JLabel logoJE;
     private javax.swing.JPanel pnlBoutons;
     private javax.swing.JPanel pnlElementsConvention;
+    private javax.swing.JPanel pnlLogo;
     private javax.swing.JSeparator sepHautDePage;
     private javax.swing.JSpinner spinMontant;
+    private javax.swing.JTextField tfNomProjet;
+    private javax.swing.JTextField tfTacheProjet;
     // End of variables declaration//GEN-END:variables
 }
