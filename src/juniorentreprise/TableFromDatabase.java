@@ -4,7 +4,6 @@
  */
 package juniorentreprise;
 
-import java.awt.*;
 import java.sql.*;
 import java.util.*;
 import javax.swing.*;
