@@ -20,7 +20,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 //edition de documents
 import com.itextpdf.text.BaseColor;
-import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Font;
@@ -31,6 +30,7 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
@@ -206,6 +206,11 @@ public class FenetreConvention extends javax.swing.JFrame {
         spinMontant.setOpaque(false);
 
         btnMod.setText("<html>Modifier Texte <br>\nManuellement\n</html>");
+        btnMod.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModActionPerformed(evt);
+            }
+        });
 
         btnGen.setText("Générer PDF");
         btnGen.setToolTipText("");
@@ -394,13 +399,13 @@ public class FenetreConvention extends javax.swing.JFrame {
             final JFileChooser fcSauvegardeConvention = new JFileChooser();
             fcSauvegardeConvention.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
             fcSauvegardeConvention.setDialogTitle("Sauvegarder la convention");
-            String emplacementSauvegarde = (fcSauvegardeConvention.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) ? fcSauvegardeConvention.getSelectedFile().toString() : null ;
+            String emplacementSauvegarde = (fcSauvegardeConvention.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) ? fcSauvegardeConvention.getSelectedFile().getAbsolutePath(): null ;
             Document docConvention = new Document();
             try {
                 try {
                     if(emplacementSauvegarde != null){
                         PdfWriter.getInstance(docConvention, new FileOutputStream(new File(emplacementSauvegarde, "Convention"+cbbEnt.getSelectedItem().toString().replaceAll("\\s", "")+cbbEtu.getSelectedItem().toString().replaceAll("\\s", "")+".pdf")));
-                        JOptionPane.showMessageDialog(this, "Votre convention à été sauvegardée dans le dossier\n"+emplacementSauvegarde, "Sauvegarde réussie ! ", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(this, "Votre convention a été sauvegardée dans le dossier\n"+emplacementSauvegarde, "Sauvegarde réussie ! ", JOptionPane.INFORMATION_MESSAGE);
                     }
                     else{
                         JOptionPane.showMessageDialog(this, "Aucun dossier sélectionné", "Erreur : Manque d'informations", JOptionPane.ERROR_MESSAGE);
@@ -408,7 +413,7 @@ public class FenetreConvention extends javax.swing.JFrame {
                 } catch (DocumentException ex) {
                     Logger.getLogger(FenetreConvention.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            } catch (FileNotFoundException ex) {
+            } catch (FileNotFoundException ex) {                
                 Logger.getLogger(FenetreConvention.class.getName()).log(Level.SEVERE, null, ex);
             }
             
@@ -470,6 +475,59 @@ public class FenetreConvention extends javax.swing.JFrame {
         }
             
     }//GEN-LAST:event_btnGenActionPerformed
+
+    private void btnModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModActionPerformed
+        // TODO add your handling code here:
+        String strDateEdition = "[DATE D'EDITION]";
+        String strDateDebut = "[DATE DE DEBUT DU PROJET]";
+        String strDateFin = "[DATE DE FIN DU PROJET]";
+        String strEtudiant = "[NOM ET PRENOM DE L'ETUDIANT]";
+        String strEntreprise = "[NOM DE L'ENTREPRISE]";
+        String strNomProjet = "[NOM DU PROJET]";
+        String strNomTache = "[NOM DE LA TACHE]";
+        String strPrix = "[PRIX DU PROJET]";
+                
+        if(cbbEtu.getSelectedItem() != null){
+            strEtudiant = cbbEtu.getSelectedItem().toString();
+        }
+        if(cbbEnt.getSelectedItem() != null){
+            strEntreprise = cbbEnt.getSelectedItem().toString();
+        }
+        if(!tfNomProjet.getText().trim().equals("")){
+            strNomProjet = tfNomProjet.getText().trim();
+        }
+        if(!tfTacheProjet.getText().trim().equals("")){
+            strNomTache = tfTacheProjet.getText().trim();
+        }
+        if(dtPickDateEdition.getDate() !=null){
+            strDateEdition = dtPickDateEdition.getDate().toString();
+        }
+        if((dtPickDateDebut.getDate() != null)){
+            strDateDebut = dtPickDateDebut.getDate().toString();
+        }
+        if(dtPickDateFin.getDate() != null){
+            strDateFin = dtPickDateFin.getDate().toString();
+        }
+        String texteConvention = strDateEdition+"\r\n\r\n\t\tConvention avec l'entreprise "+strEntreprise+"\r\n\r\n\r\n\r\nConvention avec l'entreprise "+strEntreprise+" éditée le "+strDateEdition+". Dans le cadre du projet \""+strNomProjet+", l'étudiant "+strEtudiant+" s'engage à accomplir la tâche de \""+strNomTache+"\", à partir du : "+strDateDebut+", avec une livraison prévue au "+strDateFin+". Cette tâche sera facturée "+strPrix+"€.\r\n\r\n\r\nSignature de l'entreprise "+strEntreprise+"\r\n\r\n\r\n\r\nSignature de l'étudiant "+strEtudiant;
+        
+        //creation du document dans un emplacement choisi par l'utilisateur
+            final JFileChooser fcSauvegardeConvention = new JFileChooser();
+            fcSauvegardeConvention.setDialogTitle("Sauvegarder la convention");
+            String emplacementSauvegarde = (fcSauvegardeConvention.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) ? (fcSauvegardeConvention.getSelectedFile().toString().endsWith(".txt") ? fcSauvegardeConvention.getSelectedFile().toString() : fcSauvegardeConvention.getSelectedFile().toString()+".txt") : null ;
+        
+        WriteFile createurFichierTexte = new WriteFile(emplacementSauvegarde);
+        try {
+            if(emplacementSauvegarde != null){
+                createurFichierTexte.writeToFile(texteConvention);
+                JOptionPane.showMessageDialog(this, "Votre convention modifiable a été sauvegardée dans le dossier\n"+emplacementSauvegarde, "Sauvegarde réussie ! ", JOptionPane.INFORMATION_MESSAGE);
+            }
+            else{
+                JOptionPane.showMessageDialog(this, "Aucun dossier sélectionné", "Erreur : Manque d'informations", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(FenetreConvention.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnModActionPerformed
 
     public PdfPCell getCell(String text, int alignment) {
         Font font = FontFactory.getFont(FontFactory.TIMES, 16, BaseColor.BLACK);
