@@ -25,7 +25,11 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.text.pdf.draw.VerticalPositionMark;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.logging.Level;
@@ -416,9 +420,37 @@ public class FenetreConvention extends javax.swing.JFrame {
             docConvention.open();
             Font font = FontFactory.getFont(FontFactory.COURIER, 16, BaseColor.BLACK);
             Chunk chunk = new Chunk("Convention avec l'entreprise "+cbbEnt.getSelectedItem().toString().trim()+" éditée le "+dtPickDateEdition.getDate().toString(), font);
+            //création d'une table pour gérer les positions sur la page
+            PdfPTable tableDisplay = new PdfPTable(3);
+            tableDisplay.setWidthPercentage(100);
+            //ligne vide de référence
+            PdfPCell cellLargeurTrois = getCell(" ", PdfPCell.ALIGN_CENTER);
+            cellLargeurTrois.setColspan(3);
+            //1ère ligne
+            tableDisplay.addCell(getCell(dtPickDateEdition.getDate().toString(), PdfPCell.ALIGN_LEFT));
+            tableDisplay.addCell(getCell("", PdfPCell.ALIGN_CENTER));
+            tableDisplay.addCell(getCell("", PdfPCell.ALIGN_RIGHT));
+            //quelqeues lignes vides
+            tableDisplay.addCell(cellLargeurTrois);
+            tableDisplay.addCell(cellLargeurTrois);
+            tableDisplay.addCell(cellLargeurTrois);
+            //deuxième ligne
+            tableDisplay.addCell(getCell("", PdfPCell.ALIGN_LEFT));
+            tableDisplay.addCell(getCell("Convention avec l'entreprise "+cbbEnt.getSelectedItem().toString().trim(), PdfPCell.ALIGN_CENTER));
+            tableDisplay.addCell(getCell("", PdfPCell.ALIGN_RIGHT));
+            //quelques lignes (vides)
+            tableDisplay.addCell(cellLargeurTrois);
+            tableDisplay.addCell(cellLargeurTrois);
+            tableDisplay.addCell(cellLargeurTrois);
+            tableDisplay.addCell(cellLargeurTrois);
+            tableDisplay.addCell(cellLargeurTrois);
             
+            
+            PdfPCell cellCorps = getCell("Convention avec l'entreprise "+cbbEnt.getSelectedItem().toString().trim()+" éditée le "+dtPickDateEdition.getDate().toString(), PdfPCell.ALIGN_MIDDLE);
+            cellCorps.setColspan(3);
+            tableDisplay.addCell(cellCorps);
             try {
-                docConvention.add(chunk);
+                docConvention.add(tableDisplay);
             } catch (DocumentException ex) {
                 Logger.getLogger(FenetreConvention.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -432,6 +464,13 @@ public class FenetreConvention extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cbbEtuActionPerformed
 
+    public PdfPCell getCell(String text, int alignment) {
+        PdfPCell cell = new PdfPCell(new Phrase(text));
+        cell.setPadding(0);
+        cell.setHorizontalAlignment(alignment);
+        cell.setBorder(PdfPCell.NO_BORDER);
+        return cell;
+    }
     /**
      * @param args the command line arguments
      */
