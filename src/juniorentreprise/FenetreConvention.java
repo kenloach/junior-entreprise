@@ -25,6 +25,9 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -49,6 +52,7 @@ public class FenetreConvention extends javax.swing.JFrame {
         dtPickDateEdition.setDate(Date.from(dateActuelle.atStartOfDay(ZoneId.systemDefault()).toInstant()));
         //Paramètrage du champ de prix avec valeur minimale
         SpinnerModel spinPrixModel = new SpinnerNumberModel(0.0, 0.0, 999999.0, 1.0);
+        //NB: pour enter des valeurs décimales en France, bien utiliser les , et non les .
         spinMontant.setModel(spinPrixModel);
         
         //Remplissage des combobox avec les valeurs de la BDD
@@ -156,7 +160,6 @@ public class FenetreConvention extends javax.swing.JFrame {
         dtPickDateFin = new org.jdesktop.swingx.JXDatePicker();
         tfNomProjet = new javax.swing.JTextField();
         lblNomProjet = new javax.swing.JLabel();
-
         lblTacheProjet = new javax.swing.JLabel();
         tfTacheProjet = new javax.swing.JTextField();
 
@@ -205,6 +208,8 @@ public class FenetreConvention extends javax.swing.JFrame {
 
         lblMontant.setText("Montant");
 
+        spinMontant.setOpaque(false);
+
         btnMod.setText("<html>Modifier Texte <br>\nManuellement\n</html>");
 
         btnGen.setText("Générer PDF");
@@ -241,7 +246,6 @@ public class FenetreConvention extends javax.swing.JFrame {
         tfNomProjet.setToolTipText("Nom du projet");
 
         lblNomProjet.setText("Saisir le nom du projet");
-
 
         lblTacheProjet.setText("Tâche à accomplir");
 
@@ -414,11 +418,54 @@ public class FenetreConvention extends javax.swing.JFrame {
             
             //edition du contenu du document
             docConvention.open();
-            Font font = FontFactory.getFont(FontFactory.COURIER, 16, BaseColor.BLACK);
-            Chunk chunk = new Chunk("Convention avec l'entreprise "+cbbEnt.getSelectedItem().toString().trim()+" éditée le "+dtPickDateEdition.getDate().toString(), font);
+            //création d'une table pour gérer les positions sur la page
+            PdfPTable tableDisplay = new PdfPTable(3);
+            tableDisplay.setWidthPercentage(100);
+            //ligne vide de référence
+            PdfPCell cellLargeurTrois = getCell(" ", PdfPCell.ALIGN_CENTER);
+            cellLargeurTrois.setColspan(3);
+            cellLargeurTrois.setMinimumHeight(20f);
+            //1ère ligne
+            tableDisplay.addCell(getCell(dtPickDateEdition.getDate().toString(), PdfPCell.ALIGN_LEFT));
+            tableDisplay.addCell(getCell("", PdfPCell.ALIGN_CENTER));
+            tableDisplay.addCell(getCell("", PdfPCell.ALIGN_RIGHT));
+            //quelqeues lignes vides
+            tableDisplay.addCell(cellLargeurTrois);
+            tableDisplay.addCell(cellLargeurTrois);
+            tableDisplay.addCell(cellLargeurTrois);
+            //deuxième ligne
+            tableDisplay.addCell(getCell("", PdfPCell.ALIGN_LEFT));
+            tableDisplay.addCell(getCell("Convention avec l'entreprise "+cbbEnt.getSelectedItem().toString().trim(), PdfPCell.ALIGN_JUSTIFIED));
+            tableDisplay.addCell(getCell("", PdfPCell.ALIGN_RIGHT));
+            //quelques lignes (vides)
+            tableDisplay.addCell(cellLargeurTrois);
+            tableDisplay.addCell(cellLargeurTrois);
+            tableDisplay.addCell(cellLargeurTrois);
+            tableDisplay.addCell(cellLargeurTrois);
+            tableDisplay.addCell(cellLargeurTrois);
+            
+            
+            PdfPCell cellCorps = getCell("Convention avec l'entreprise "+cbbEnt.getSelectedItem().toString().trim()+" éditée le "+dtPickDateEdition.getDate()+".\n\nDans le cadre du projet \""+tfNomProjet.getText().trim()+"\", l'étudiant "+cbbEtu.getSelectedItem().toString()+" s'engage à accomplir la tâche de \""+tfTacheProjet.getText().trim()+"\", à partir du :"+dtPickDateDebut.getDate()+", avec une livraison prévue au "+dtPickDateFin.getDate()+". Cette tâche sera facturée "+String.format("%.2f", spinMontant.getValue())+" €." , PdfPCell.ALIGN_JUSTIFIED);
+            cellCorps.setColspan(3);
+            cellCorps.setNoWrap(false);
+            tableDisplay.addCell(cellCorps);
+            //quelques lignes (vides)
+            tableDisplay.addCell(cellLargeurTrois);
+            tableDisplay.addCell(cellLargeurTrois);
+            tableDisplay.addCell(cellLargeurTrois);
+            tableDisplay.addCell(cellLargeurTrois);
+            tableDisplay.addCell(cellLargeurTrois);
+            tableDisplay.addCell(cellLargeurTrois);
+            tableDisplay.addCell(cellLargeurTrois);
+            tableDisplay.addCell(cellLargeurTrois);
+            tableDisplay.addCell(cellLargeurTrois);
+            //ligne de signatures
+            tableDisplay.addCell(getCell("Signature de l'entreprise "+cbbEnt.getSelectedItem().toString(), PdfPCell.ALIGN_LEFT));
+            tableDisplay.addCell(getCell("", PdfPCell.ALIGN_CENTER));
+            tableDisplay.addCell(getCell("Signature de l'étudiant "+cbbEtu.getSelectedItem().toString(), PdfPCell.ALIGN_RIGHT));
             
             try {
-                docConvention.add(chunk);
+                docConvention.add(tableDisplay);
             } catch (DocumentException ex) {
                 Logger.getLogger(FenetreConvention.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -432,6 +479,14 @@ public class FenetreConvention extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cbbEtuActionPerformed
 
+    public PdfPCell getCell(String text, int alignment) {
+        Font font = FontFactory.getFont(FontFactory.COURIER, 16, BaseColor.BLACK);
+        PdfPCell cell = new PdfPCell(new Phrase(text, font));
+        cell.setPadding(0);
+        cell.setHorizontalAlignment(alignment);
+        cell.setBorder(PdfPCell.NO_BORDER);
+        return cell;
+    }
     /**
      * @param args the command line arguments
      */
