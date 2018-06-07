@@ -13,6 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.YES_NO_CANCEL_OPTION;
 import javax.swing.JTable;
@@ -185,7 +186,6 @@ public class Dashboard extends javax.swing.JFrame {
         btnIndemnisation = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
         menFichier = new javax.swing.JMenu();
-        miNouv = new javax.swing.JMenuItem();
         miOuvr = new javax.swing.JMenuItem();
         miQuit = new javax.swing.JMenuItem();
 
@@ -253,6 +253,7 @@ public class Dashboard extends javax.swing.JFrame {
 
         dialogInscr.setTitle("Inscription");
         dialogInscr.setModal(true);
+        dialogInscr.setLocationRelativeTo(this);
 
         pnlInscrLabel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
         pnlInscrLabel.setLayout(new java.awt.GridLayout(7, 2, 10, 10));
@@ -365,6 +366,7 @@ public class Dashboard extends javax.swing.JFrame {
 
         dialogAjoutEtud.setTitle("Ajouter un étudiant à la BDD");
         dialogAjoutEtud.setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
+
 
         pnlAjoutEtudLabel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Remplir les données de l'étudiant", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.ABOVE_TOP));
         pnlAjoutEtudLabel.setLayout(new java.awt.GridLayout(13, 2, 10, 10));
@@ -505,7 +507,7 @@ public class Dashboard extends javax.swing.JFrame {
                 .addComponent(pnlAjoutEtudLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 535, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(plnAjoutEtudButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -550,11 +552,11 @@ public class Dashboard extends javax.swing.JFrame {
         pnlCalend.setLayout(pnlCalendLayout);
         pnlCalendLayout.setHorizontalGroup(
             pnlCalendLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jXMonthView1, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)
+            .addComponent(jXMonthView1, javax.swing.GroupLayout.PREFERRED_SIZE, 233, Short.MAX_VALUE)
         );
         pnlCalendLayout.setVerticalGroup(
             pnlCalendLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jXMonthView1, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
+            .addComponent(jXMonthView1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, Short.MAX_VALUE)
         );
 
         lblLogoJE.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/JE_logo.png"))); // NOI18N
@@ -619,7 +621,7 @@ public class Dashboard extends javax.swing.JFrame {
                     .addGroup(pnlAccueilLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(pnlChat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         tpOnglets.addTab("Accueil", pnlAccueil);
@@ -751,7 +753,7 @@ public class Dashboard extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(pnlClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(spEntreprise)
-                    .addComponent(spAlphaClient, javax.swing.GroupLayout.DEFAULT_SIZE, 481, Short.MAX_VALUE))
+                    .addComponent(spAlphaClient, javax.swing.GroupLayout.DEFAULT_SIZE, 489, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -790,7 +792,7 @@ public class Dashboard extends javax.swing.JFrame {
                     .addGroup(pnlProjetLayout.createSequentialGroup()
                         .addComponent(spProjet, javax.swing.GroupLayout.PREFERRED_SIZE, 998, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(spAlphaProjet, javax.swing.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE))
+                        .addComponent(spAlphaProjet))
                     .addGroup(pnlProjetLayout.createSequentialGroup()
                         .addComponent(btnAjoutProjet, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -810,7 +812,7 @@ public class Dashboard extends javax.swing.JFrame {
                         .addComponent(btnSupprProjet)))
                 .addGap(18, 18, 18)
                 .addGroup(pnlProjetLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(spAlphaProjet, javax.swing.GroupLayout.DEFAULT_SIZE, 481, Short.MAX_VALUE)
+                    .addComponent(spAlphaProjet, javax.swing.GroupLayout.DEFAULT_SIZE, 489, Short.MAX_VALUE)
                     .addComponent(spProjet))
                 .addContainerGap())
         );
@@ -903,17 +905,25 @@ public class Dashboard extends javax.swing.JFrame {
                 .addGroup(pnlDocsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(pnlConvention, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pnlIndemnistation, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         tpOnglets.addTab("Documents", pnlDocs);
 
         menFichier.setText("Fichier");
+        menFichier.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menFichierActionPerformed(evt);
+            }
+        });
 
-        miNouv.setText("Nouveau");
-        menFichier.add(miNouv);
-
-        miOuvr.setText("Ouvrir");
+        miOuvr.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.CTRL_MASK));
+        miOuvr.setText("Se déconnecter");
+        miOuvr.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miOuvrActionPerformed(evt);
+            }
+        });
         menFichier.add(miOuvr);
 
         miQuit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_MASK));
@@ -1055,12 +1065,6 @@ public class Dashboard extends javax.swing.JFrame {
     private void sfEtudActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sfEtudActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_sfEtudActionPerformed
-
-    private void miQuitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miQuitActionPerformed
-        int response = JOptionPane.showConfirmDialog(this,"Voulez-vous vraiment quitter ?","Fenêtre de Confirmation" , YES_NO_CANCEL_OPTION);
-        //Si on répond "Oui", on quitte.
-        if (response==JOptionPane.YES_OPTION) System.exit(0);
-    }//GEN-LAST:event_miQuitActionPerformed
 
 
     private void jXMonthView1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jXMonthView1ActionPerformed
@@ -1284,7 +1288,30 @@ public class Dashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_sfClientActionPerformed
 
+    private void menFichierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menFichierActionPerformed
+      //menuConnexionStartProgramme logout = new menuConnexionStartProgramme();
+    }//GEN-LAST:event_menFichierActionPerformed
 
+    private void miQuitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miQuitActionPerformed
+        int response = JOptionPane.showConfirmDialog(this,"Voulez-vous vraiment quitter ?","Fenêtre de Confirmation" , YES_NO_CANCEL_OPTION);
+        //Si on répond "Oui", on quitte.
+        if (response==JOptionPane.YES_OPTION) System.exit(0);
+    }//GEN-LAST:event_miQuitActionPerformed
+
+    // Retourne au menu connexion
+    private void miOuvrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miOuvrActionPerformed
+        try {
+            menuConnexionStartProgramme logout = new menuConnexionStartProgramme();
+            logout.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            logout.pack();
+            logout.setVisible(true);
+            this.dispose();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_miOuvrActionPerformed
+
+    
 
     /**
      * @param args the command line arguments
@@ -1356,7 +1383,6 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JList<String> listProjet;
     private javax.swing.JMenu menFichier;
     private javax.swing.JMenuBar menuBar;
-    private javax.swing.JMenuItem miNouv;
     private javax.swing.JMenuItem miOuvr;
     private javax.swing.JMenuItem miQuit;
     private javax.swing.JPasswordField pfConfirm;
