@@ -295,6 +295,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JSpinner" name="spinMontant">
+          <Properties>
+            <Property name="opaque" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JSeparator" name="sepHautDePage">
         </Component>
