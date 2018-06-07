@@ -190,11 +190,6 @@ public class FenetreConvention extends javax.swing.JFrame {
         lblNomEtu.setText("Nom Etudiant");
 
         cbbEtu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4", "Item 1", "Item 2", "Item 3", "Item 4", "Item 1", "Item 2", "Item 3", "Item 4", "Item 1", "Item 2", "Item 3", "Item 4", "Item 1", "Item 2", "Item 3", "Item 4", "Item 1", "Item 2", "Item 3", "Item 4", "Item 1", "Item 2", "Item 3", "Item 4", "Item 1", "Item 2", "Item 3", "Item 4", "Item 1", "Item 2", "Item 3", "Item 4", "Item 1", "Item 2", "Item 3", "Item 4", "Item 1", "Item 2", "Item 3", "Item 4", "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cbbEtu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbbEtuActionPerformed(evt);
-            }
-        });
 
         lblNomEnt.setText("Nom Entreprise");
 
@@ -398,6 +393,7 @@ public class FenetreConvention extends javax.swing.JFrame {
             //creation du document dans un emplacement choisi par l'utilisateur
             final JFileChooser fcSauvegardeConvention = new JFileChooser();
             fcSauvegardeConvention.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+            fcSauvegardeConvention.setDialogTitle("Sauvegarder la convention");
             String emplacementSauvegarde = (fcSauvegardeConvention.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) ? fcSauvegardeConvention.getSelectedFile().toString() : null ;
             Document docConvention = new Document();
             try {
@@ -475,12 +471,8 @@ public class FenetreConvention extends javax.swing.JFrame {
             
     }//GEN-LAST:event_btnGenActionPerformed
 
-    private void cbbEtuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbEtuActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbbEtuActionPerformed
-
     public PdfPCell getCell(String text, int alignment) {
-        Font font = FontFactory.getFont(FontFactory.COURIER, 16, BaseColor.BLACK);
+        Font font = FontFactory.getFont(FontFactory.TIMES, 16, BaseColor.BLACK);
         PdfPCell cell = new PdfPCell(new Phrase(text, font));
         cell.setPadding(0);
         cell.setHorizontalAlignment(alignment);

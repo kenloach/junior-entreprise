@@ -364,6 +364,7 @@ public class Dashboard extends javax.swing.JFrame {
         );
 
         dialogAjoutEtud.setTitle("Ajouter un étudiant à la BDD");
+        dialogAjoutEtud.setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
 
         pnlAjoutEtudLabel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Remplir les données de l'étudiant", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.ABOVE_TOP));
         pnlAjoutEtudLabel.setLayout(new java.awt.GridLayout(13, 2, 10, 10));
@@ -611,9 +612,7 @@ public class Dashboard extends javax.swing.JFrame {
                     .addGroup(pnlAccueilLayout.createSequentialGroup()
                         .addGap(7, 7, 7)
                         .addGroup(pnlAccueilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnlAccueilLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(pnlRappel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(pnlRappel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(pnlLogoJE, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(pnlCalend, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -804,10 +803,11 @@ public class Dashboard extends javax.swing.JFrame {
             pnlProjetLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlProjetLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnlProjetLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAjoutProjet)
-                    .addComponent(btnSupprProjet)
-                    .addComponent(sfProjet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(pnlProjetLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(sfProjet, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(pnlProjetLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnAjoutProjet)
+                        .addComponent(btnSupprProjet)))
                 .addGap(18, 18, 18)
                 .addGroup(pnlProjetLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(spAlphaProjet, javax.swing.GroupLayout.DEFAULT_SIZE, 481, Short.MAX_VALUE)

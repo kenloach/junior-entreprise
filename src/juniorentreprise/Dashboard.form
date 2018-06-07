@@ -272,6 +272,9 @@
     <Container class="javax.swing.JDialog" name="dialogAjoutEtud">
       <Properties>
         <Property name="title" type="java.lang.String" value="Ajouter un &#xe9;tudiant &#xe0; la BDD"/>
+        <Property name="modalityType" type="java.awt.Dialog$ModalityType" editor="org.netbeans.modules.form.editors.EnumEditor">
+          <Value id="APPLICATION_MODAL"/>
+        </Property>
       </Properties>
 
       <Layout>
@@ -625,10 +628,7 @@
                           <Group type="102" attributes="0">
                               <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="pnlRappel" min="-2" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="pnlRappel" min="-2" max="-2" attributes="0"/>
                                   <Component id="pnlLogoJE" alignment="0" min="-2" pref="156" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
@@ -1092,10 +1092,12 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="btnAjoutProjet" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnSupprProjet" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="sfProjet" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="btnAjoutProjet" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnSupprProjet" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
