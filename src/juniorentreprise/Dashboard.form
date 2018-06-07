@@ -97,6 +97,9 @@
         <Property name="title" type="java.lang.String" value="Inscription"/>
         <Property name="modal" type="boolean" value="true"/>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="dialogInscr.setLocationRelativeTo(this);"/>
+      </AuxValues>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -273,6 +276,9 @@
       <Properties>
         <Property name="title" type="java.lang.String" value="Ajouter un &#xe9;tudiant &#xe0; la BDD"/>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="//dialogAjoutEtud.setLocationRelativeTo(JFrame);"/>
+      </AuxValues>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -294,7 +300,7 @@
                   <Component id="pnlAjoutEtudLabel" min="-2" pref="535" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="plnAjoutEtudButton" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="16" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -521,16 +527,20 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Fichier"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menFichierActionPerformed"/>
+          </Events>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="miNouv">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Nouveau"/>
-              </Properties>
-            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="miOuvr">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Ouvrir"/>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="Ctrl+D"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Se d&#xe9;connecter"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="miOuvrActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="miQuit">
               <Properties>
@@ -552,7 +562,7 @@
     <Property name="defaultCloseOperation" type="int" value="3"/>
     <Property name="title" type="java.lang.String" value="Junior Entreprise"/>
     <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-      <Color id="Curseur par d&#xe9;faut"/>
+      <Color id="Default Cursor"/>
     </Property>
     <Property name="name" type="java.lang.String" value="frameJE" noResource="true"/>
   </Properties>
@@ -625,10 +635,7 @@
                           <Group type="102" attributes="0">
                               <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="pnlRappel" min="-2" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="pnlRappel" min="-2" max="-2" attributes="0"/>
                                   <Component id="pnlLogoJE" alignment="0" min="-2" pref="156" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
@@ -639,7 +646,7 @@
                               <Component id="pnlChat" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="19" max="32767" attributes="0"/>
+                      <EmptySpace pref="32" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -970,7 +977,7 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="spEntreprise" max="32767" attributes="0"/>
-                          <Component id="spAlphaClient" pref="481" max="32767" attributes="0"/>
+                          <Component id="spAlphaClient" pref="489" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -1074,7 +1081,7 @@
                           <Group type="102" attributes="0">
                               <Component id="spProjet" min="-2" pref="998" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="spAlphaProjet" pref="52" max="32767" attributes="0"/>
+                              <Component id="spAlphaProjet" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Component id="btnAjoutProjet" min="-2" pref="150" max="-2" attributes="0"/>
@@ -1092,14 +1099,16 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="btnAjoutProjet" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnSupprProjet" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="sfProjet" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="btnAjoutProjet" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnSupprProjet" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="spAlphaProjet" pref="481" max="32767" attributes="0"/>
+                          <Component id="spAlphaProjet" pref="489" max="32767" attributes="0"/>
                           <Component id="spProjet" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -1212,7 +1221,7 @@
                           <Component id="pnlConvention" max="32767" attributes="0"/>
                           <Component id="pnlIndemnistation" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="19" max="32767" attributes="0"/>
+                      <EmptySpace pref="45" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
