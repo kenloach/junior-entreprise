@@ -164,7 +164,6 @@ public class Dashboard extends javax.swing.JFrame {
         spEtudiant = new javax.swing.JScrollPane(tabEtudiant);
         btnAjoutEtud = new javax.swing.JButton();
         btnSupprEtud = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
         pnlClient = new javax.swing.JPanel();
         spEntreprise = new javax.swing.JScrollPane(tabEntreprise);
         spAlphaClient = new javax.swing.JScrollPane();
@@ -661,28 +660,23 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Modifier");
-        jButton1.setToolTipText("Modifier les données d'un étudiant");
-
         javax.swing.GroupLayout pnlEtudLayout = new javax.swing.GroupLayout(pnlEtud);
         pnlEtud.setLayout(pnlEtudLayout);
         pnlEtudLayout.setHorizontalGroup(
             pnlEtudLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlEtudLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnlEtudLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlEtudLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(pnlEtudLayout.createSequentialGroup()
                         .addComponent(spEtudiant, javax.swing.GroupLayout.PREFERRED_SIZE, 1010, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(spAlphaEtud, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))
+                        .addComponent(spAlphaEtud, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pnlEtudLayout.createSequentialGroup()
                         .addComponent(btnAjoutEtud, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnSupprEtud, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(sfEtud, javax.swing.GroupLayout.PREFERRED_SIZE, 591, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(sfEtud, javax.swing.GroupLayout.PREFERRED_SIZE, 743, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         pnlEtudLayout.setVerticalGroup(
@@ -692,8 +686,7 @@ public class Dashboard extends javax.swing.JFrame {
                 .addGroup(pnlEtudLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(sfEtud, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAjoutEtud)
-                    .addComponent(btnSupprEtud)
-                    .addComponent(jButton1))
+                    .addComponent(btnSupprEtud))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pnlEtudLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(spEtudiant, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -741,16 +734,16 @@ public class Dashboard extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(pnlClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlClientLayout.createSequentialGroup()
-                        .addComponent(spEntreprise, javax.swing.GroupLayout.PREFERRED_SIZE, 1010, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(spEntreprise, javax.swing.GroupLayout.PREFERRED_SIZE, 1015, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(spAlphaClient, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pnlClientLayout.createSequentialGroup()
                         .addComponent(btnAjoutClient, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnSupprClient, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(sfClient, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlClientLayout.setVerticalGroup(
             pnlClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -763,7 +756,7 @@ public class Dashboard extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(pnlClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(spEntreprise)
-                    .addComponent(spAlphaClient, javax.swing.GroupLayout.DEFAULT_SIZE, 489, Short.MAX_VALUE))
+                    .addComponent(spAlphaClient, javax.swing.GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -802,14 +795,14 @@ public class Dashboard extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(pnlProjetLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlProjetLayout.createSequentialGroup()
-                        .addComponent(spProjet, javax.swing.GroupLayout.PREFERRED_SIZE, 998, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(spAlphaProjet))
+                        .addComponent(spProjet, javax.swing.GroupLayout.PREFERRED_SIZE, 1015, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(spAlphaProjet, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))
                     .addGroup(pnlProjetLayout.createSequentialGroup()
                         .addComponent(btnAjoutProjet, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnSupprProjet, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(sfProjet, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -817,14 +810,13 @@ public class Dashboard extends javax.swing.JFrame {
             pnlProjetLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlProjetLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnlProjetLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(sfProjet, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(pnlProjetLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnAjoutProjet)
-                        .addComponent(btnSupprProjet)))
+                .addGroup(pnlProjetLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAjoutProjet)
+                    .addComponent(btnSupprProjet)
+                    .addComponent(sfProjet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(pnlProjetLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(spAlphaProjet, javax.swing.GroupLayout.DEFAULT_SIZE, 489, Short.MAX_VALUE)
+                    .addComponent(spAlphaProjet, javax.swing.GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE)
                     .addComponent(spProjet))
                 .addContainerGap())
         );
@@ -915,8 +907,8 @@ public class Dashboard extends javax.swing.JFrame {
             .addGroup(pnlDocsLayout.createSequentialGroup()
                 .addGap(79, 79, 79)
                 .addGroup(pnlDocsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(pnlConvention, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnlIndemnistation, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(pnlIndemnistation, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlConvention, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(45, Short.MAX_VALUE))
         );
 
@@ -1365,7 +1357,6 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JDialog dialogAjoutEtud;
     private javax.swing.JDialog dialogConn;
     private javax.swing.JDialog dialogInscr;
-    private javax.swing.JButton jButton1;
     private javax.swing.JColorChooser jColorChooser1;
     private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JScrollPane jScrollPane4;
