@@ -100,6 +100,7 @@ public class TableFromDatabase
         };
 
         JTable table = new JTable( model );
+        table.setEnabled(false);
         return table;
         /*
         JScrollPane scrollPane = new JScrollPane( table );

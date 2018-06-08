@@ -17,6 +17,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.YES_NO_CANCEL_OPTION;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 
 
@@ -163,6 +164,7 @@ public class Dashboard extends javax.swing.JFrame {
         spEtudiant = new javax.swing.JScrollPane(tabEtudiant);
         btnAjoutEtud = new javax.swing.JButton();
         btnSupprEtud = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         pnlClient = new javax.swing.JPanel();
         spEntreprise = new javax.swing.JScrollPane(tabEntreprise);
         spAlphaClient = new javax.swing.JScrollPane();
@@ -366,7 +368,7 @@ public class Dashboard extends javax.swing.JFrame {
 
         dialogAjoutEtud.setTitle("Ajouter un étudiant à la BDD");
         dialogAjoutEtud.setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
-
+        //dialogAjoutEtud.setLocationRelativeTo(JFrame);
 
         pnlAjoutEtudLabel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Remplir les données de l'étudiant", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.ABOVE_TOP));
         pnlAjoutEtudLabel.setLayout(new java.awt.GridLayout(13, 2, 10, 10));
@@ -552,11 +554,11 @@ public class Dashboard extends javax.swing.JFrame {
         pnlCalend.setLayout(pnlCalendLayout);
         pnlCalendLayout.setHorizontalGroup(
             pnlCalendLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jXMonthView1, javax.swing.GroupLayout.PREFERRED_SIZE, 233, Short.MAX_VALUE)
+            .addComponent(jXMonthView1, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)
         );
         pnlCalendLayout.setVerticalGroup(
             pnlCalendLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jXMonthView1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, Short.MAX_VALUE)
+            .addComponent(jXMonthView1, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
         );
 
         lblLogoJE.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/JE_logo.png"))); // NOI18N
@@ -633,6 +635,7 @@ public class Dashboard extends javax.swing.JFrame {
         });
         spAlphaEtud.setViewportView(ListAlphaEtud);
 
+        sfEtud.setEditable(false);
         sfEtud.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sfEtudActionPerformed(evt);
@@ -658,6 +661,9 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("Modifier");
+        jButton1.setToolTipText("Modifier les données d'un étudiant");
+
         javax.swing.GroupLayout pnlEtudLayout = new javax.swing.GroupLayout(pnlEtud);
         pnlEtud.setLayout(pnlEtudLayout);
         pnlEtudLayout.setHorizontalGroup(
@@ -673,8 +679,10 @@ public class Dashboard extends javax.swing.JFrame {
                         .addComponent(btnAjoutEtud, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnSupprEtud, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(sfEtud, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(sfEtud, javax.swing.GroupLayout.PREFERRED_SIZE, 591, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         pnlEtudLayout.setVerticalGroup(
@@ -684,11 +692,12 @@ public class Dashboard extends javax.swing.JFrame {
                 .addGroup(pnlEtudLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(sfEtud, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAjoutEtud)
-                    .addComponent(btnSupprEtud))
+                    .addComponent(btnSupprEtud)
+                    .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pnlEtudLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(spEtudiant, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(spAlphaEtud, javax.swing.GroupLayout.DEFAULT_SIZE, 486, Short.MAX_VALUE))
+                    .addComponent(spAlphaEtud, javax.swing.GroupLayout.DEFAULT_SIZE, 512, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -717,6 +726,7 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
+        sfClient.setEditable(false);
         sfClient.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sfClientActionPerformed(evt);
@@ -781,6 +791,8 @@ public class Dashboard extends javax.swing.JFrame {
                 btnSupprProjetActionPerformed(evt);
             }
         });
+
+        sfProjet.setEditable(false);
 
         javax.swing.GroupLayout pnlProjetLayout = new javax.swing.GroupLayout(pnlProjet);
         pnlProjet.setLayout(pnlProjetLayout);
@@ -1178,8 +1190,6 @@ public class Dashboard extends javax.swing.JFrame {
         // connection
         Statement stmt = null; // Statement reference variable for query
         // Execution
-        ResultSet rs = null; // ResultSet reference variable for saving query
-        // result 
         
         try
         {
@@ -1244,6 +1254,7 @@ public class Dashboard extends javax.swing.JFrame {
             Connection con = DriverManager.getConnection("jdbc:mysql://iutdoua-web.univ-lyon1.fr:3306/p1702775", "p1702775", "296054");
             Statement stmt=(Statement)con.createStatement();
             //On vérifie que l'utilisateur à sélectionné une ligne
+            System.out.println("Ligne séléctionnée : "+tabEtudiant.getSelectedRow());
             if(tabEtudiant.getSelectedRow()==-1)
             {
                 //Si il n'y a pa de lignes selectionnées, on affiche un warning
@@ -1252,8 +1263,13 @@ public class Dashboard extends javax.swing.JFrame {
                 //Tant qu'il y a des lignes selectionnées, on les supprime
                 
                 while(tabEtudiant.getSelectedRow()!=-1){ //getSelectedRow() retourne -1 si rien n'est sélectionné
-                    String delete = "DELETE FROM ETUDIANT WHERE IDETUDIANT="+tabEtudiant.getSelectedRow()+";";
+                    String delete = "DELETE FROM Etudiant WHERE IDETUDIANT="+tabEtudiant.getValueAt(tabEtudiant.getSelectedRow(),0).toString()+";";
+                    System.out.println("Suppression de l'étudiant "+tabEtudiant.getValueAt(tabEtudiant.getSelectedRow(),0).toString());
+                    DefaultTableModel model = (DefaultTableModel) tabEtudiant.getModel();
+                    //suppression dans la bdd
                     stmt.executeUpdate(delete);
+                    //suppression dans la table
+                    model.removeRow(tabEtudiant.getSelectedRow());
                 }
             }
         }
@@ -1349,6 +1365,7 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JDialog dialogAjoutEtud;
     private javax.swing.JDialog dialogConn;
     private javax.swing.JDialog dialogInscr;
+    private javax.swing.JButton jButton1;
     private javax.swing.JColorChooser jColorChooser1;
     private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JScrollPane jScrollPane4;
