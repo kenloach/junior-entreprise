@@ -7,6 +7,7 @@ package juniorentreprise;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -131,13 +132,15 @@ public class menuConnexionStartProgramme extends javax.swing.JFrame {
             //Ouverture de la connexion, initialisation d'un Statement, initialisation d'un ResultSet, etc.
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql://iutdoua-web.univ-lyon1.fr:3306/p1702775", "p1702775", "296054");
-            Statement stmt=(Statement)con.createStatement();
+            
             String nomCon = jXLoginPaneMain.getUserName();
             String passCon = String.valueOf(jXLoginPaneMain.getPassword());
-            String request = "SELECT * FROM MembreJE WHERE login=\'"+nomCon.replaceAll("'", "\'")+"\' AND password=\'"+passCon.replaceAll("'", "\'")+"\';";
+            PreparedStatement stmt=con.prepareStatement("SELECT * FROM MembreJE WHERE login=? AND password=?");
+            stmt.setString(1, nomCon);
+            stmt.setString(2, passCon);
             
             /* Exécution d'une requête de lecture */
-            resultat =  stmt.executeQuery(request);//query pour des requetes SELECT
+            resultat =  stmt.executeQuery();//query pour des requetes SELECT
             if(resultat.next())
             {
                 int idUtilisateur = resultat.getInt( "id" );
