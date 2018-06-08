@@ -74,7 +74,11 @@ public class Dashboard extends javax.swing.JFrame {
         tabEntreprise = tfd.createTable("Entreprise");
         tabProjet = tfd.createTable("Projet");
         initComponents();
-
+        
+        if (menuConnexionStartProgramme.getLogin().equals("admin")){
+            menInscr.setVisible(true);
+        }
+        
     }
 
     /**
@@ -186,9 +190,12 @@ public class Dashboard extends javax.swing.JFrame {
         lblImgIndemn = new javax.swing.JLabel();
         btnIndemnisation = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
-        menFichier = new javax.swing.JMenu();
+        menJE = new javax.swing.JMenu();
         miOuvr = new javax.swing.JMenuItem();
         miQuit = new javax.swing.JMenuItem();
+        menInscr = new javax.swing.JMenu();
+        menInscr.setVisible(false);
+        miInscr = new javax.swing.JMenuItem();
 
         dialogConn.setTitle("Connexion");
 
@@ -914,10 +921,10 @@ public class Dashboard extends javax.swing.JFrame {
 
         tpOnglets.addTab("Documents", pnlDocs);
 
-        menFichier.setText("Fichier");
-        menFichier.addActionListener(new java.awt.event.ActionListener() {
+        menJE.setText("Junior Entreprise");
+        menJE.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menFichierActionPerformed(evt);
+                menJEActionPerformed(evt);
             }
         });
 
@@ -928,7 +935,7 @@ public class Dashboard extends javax.swing.JFrame {
                 miOuvrActionPerformed(evt);
             }
         });
-        menFichier.add(miOuvr);
+        menJE.add(miOuvr);
 
         miQuit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_MASK));
         miQuit.setText("Quitter");
@@ -937,9 +944,22 @@ public class Dashboard extends javax.swing.JFrame {
                 miQuitActionPerformed(evt);
             }
         });
-        menFichier.add(miQuit);
+        menJE.add(miQuit);
 
-        menuBar.add(menFichier);
+        menuBar.add(menJE);
+
+        menInscr.setText("Inscription");
+
+        miInscr.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.CTRL_MASK));
+        miInscr.setText("Nouvel Utilisateur");
+        miInscr.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miInscrActionPerformed(evt);
+            }
+        });
+        menInscr.add(miInscr);
+
+        menuBar.add(menInscr);
 
         setJMenuBar(menuBar);
 
@@ -959,17 +979,6 @@ public class Dashboard extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void miInscrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miInscrActionPerformed
-        try { 
-            dialogInscr.setModalityType(ModalityType.APPLICATION_MODAL);
-            dialogInscr.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-            dialogInscr.pack();
-            dialogInscr.setVisible(true);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }//GEN-LAST:event_miInscrActionPerformed
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
         // TODO add your handling code here:
@@ -1296,9 +1305,9 @@ public class Dashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_sfClientActionPerformed
 
-    private void menFichierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menFichierActionPerformed
+    private void menJEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menJEActionPerformed
       //menuConnexionStartProgramme logout = new menuConnexionStartProgramme();
-    }//GEN-LAST:event_menFichierActionPerformed
+    }//GEN-LAST:event_menJEActionPerformed
 
     private void miQuitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miQuitActionPerformed
         int response = JOptionPane.showConfirmDialog(this,"Voulez-vous vraiment quitter ?","Fenêtre de Confirmation" , YES_NO_CANCEL_OPTION);
@@ -1318,6 +1327,17 @@ public class Dashboard extends javax.swing.JFrame {
             ex.printStackTrace();
         }
     }//GEN-LAST:event_miOuvrActionPerformed
+
+    private void miInscrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miInscrActionPerformed
+        try { 
+            dialogInscr.setModalityType(ModalityType.APPLICATION_MODAL);
+            dialogInscr.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+            dialogInscr.pack();
+            dialogInscr.setVisible(true);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_miInscrActionPerformed
 
     
 
@@ -1389,8 +1409,10 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel lblPaswd;
     private javax.swing.JList<String> listClient;
     private javax.swing.JList<String> listProjet;
-    private javax.swing.JMenu menFichier;
+    private javax.swing.JMenu menInscr;
+    private javax.swing.JMenu menJE;
     private javax.swing.JMenuBar menuBar;
+    private javax.swing.JMenuItem miInscr;
     private javax.swing.JMenuItem miOuvr;
     private javax.swing.JMenuItem miQuit;
     private javax.swing.JPasswordField pfConfirm;

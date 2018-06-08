@@ -526,12 +526,12 @@
     </Container>
     <Menu class="javax.swing.JMenuBar" name="menuBar">
       <SubComponents>
-        <Menu class="javax.swing.JMenu" name="menFichier">
+        <Menu class="javax.swing.JMenu" name="menJE">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Fichier"/>
+            <Property name="text" type="java.lang.String" value="Junior Entreprise"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menFichierActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menJEActionPerformed"/>
           </Events>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="miOuvr">
@@ -554,6 +554,27 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="miQuitActionPerformed"/>
+              </Events>
+            </MenuItem>
+          </SubComponents>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="menInscr">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Inscription"/>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="menInscr.setVisible(false);&#xd;&#xa;"/>
+          </AuxValues>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="miInscr">
+              <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="Ctrl+I"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Nouvel Utilisateur"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="miInscrActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>

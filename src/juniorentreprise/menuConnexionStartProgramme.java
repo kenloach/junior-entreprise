@@ -19,6 +19,11 @@ import javax.swing.*;
  */
 public class menuConnexionStartProgramme extends javax.swing.JFrame {
     
+    private static String login ="";
+    //pour vérifier si c'est l'admin
+    public static String getLogin() {
+        return login;
+    }
     
     /**
      * Creates new form menuConnexionStartProgramme
@@ -130,6 +135,7 @@ public class menuConnexionStartProgramme extends javax.swing.JFrame {
             Connection con = DriverManager.getConnection("jdbc:mysql://iutdoua-web.univ-lyon1.fr:3306/p1702775", "p1702775", "296054");
             
             String nomCon = jXLoginPaneMain.getUserName();
+            login = nomCon;
             String passCon = String.valueOf(jXLoginPaneMain.getPassword());
             PreparedStatement stmt=con.prepareStatement("SELECT * FROM MembreJE WHERE login=? AND password=?");
             stmt.setString(1, nomCon);
