@@ -134,7 +134,7 @@ public class menuConnexionStartProgramme extends javax.swing.JFrame {
             Statement stmt=(Statement)con.createStatement();
             String nomCon = jXLoginPaneMain.getUserName();
             String passCon = String.valueOf(jXLoginPaneMain.getPassword());
-            String request = "SELECT * FROM MembreJE WHERE login='"+nomCon+"' AND password='"+passCon+"';";
+            String request = "SELECT * FROM MembreJE WHERE login=\'"+nomCon.replaceAll("'", "\'")+"\' AND password=\'"+passCon.replaceAll("'", "\'")+"\';";
             
             /* Exécution d'une requête de lecture */
             resultat =  stmt.executeQuery(request);//query pour des requetes SELECT
