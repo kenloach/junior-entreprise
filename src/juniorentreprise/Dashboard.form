@@ -565,7 +565,7 @@
     <Property name="defaultCloseOperation" type="int" value="3"/>
     <Property name="title" type="java.lang.String" value="Junior Entreprise"/>
     <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-      <Color id="Default Cursor"/>
+      <Color id="Curseur par d&#xe9;faut"/>
     </Property>
     <Property name="name" type="java.lang.String" value="frameJE" noResource="true"/>
   </Properties>
@@ -822,8 +822,10 @@
                               <Component id="btnAjoutEtud" min="-2" pref="150" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="btnSupprEtud" min="-2" pref="150" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="sfEtud" max="32767" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jButton1" max="32767" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="sfEtud" min="-2" pref="591" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -838,11 +840,12 @@
                           <Component id="sfEtud" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btnAjoutEtud" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btnSupprEtud" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="spEtudiant" max="32767" attributes="0"/>
-                          <Component id="spAlphaEtud" pref="486" max="32767" attributes="0"/>
+                          <Component id="spAlphaEtud" pref="512" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -897,6 +900,9 @@
               </SubComponents>
             </Container>
             <Component class="org.jdesktop.swingx.JXSearchField" name="sfEtud">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+              </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="sfEtudActionPerformed"/>
               </Events>
@@ -933,6 +939,12 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSupprEtudActionPerformed"/>
               </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="jButton1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Modifier"/>
+                <Property name="toolTipText" type="java.lang.String" value="Modifier les donn&#xe9;es d&apos;un &#xe9;tudiant"/>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>
@@ -1060,6 +1072,9 @@
               </Events>
             </Component>
             <Component class="org.jdesktop.swingx.JXSearchField" name="sfClient">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+              </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="sfClientActionPerformed"/>
               </Events>
@@ -1192,6 +1207,9 @@
               </Events>
             </Component>
             <Component class="org.jdesktop.swingx.JXSearchField" name="sfProjet">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>
