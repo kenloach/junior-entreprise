@@ -82,7 +82,13 @@ public class TableFromDatabase
 
         DefaultTableModel model = new DefaultTableModel(data, columnNames)
         {
-        	@Override
+            
+            @Override
+            public boolean isCellEditable(int row, int column) {                
+                return false;               
+            };
+            
+            @Override
             public Class getColumnClass(int column)
             {
                 for (int row = 0; row < getRowCount(); row++)
@@ -100,7 +106,7 @@ public class TableFromDatabase
         };
 
         JTable table = new JTable( model );
-        table.setEnabled(false);
+        table.setEnabled(true);
         return table;
         /*
         JScrollPane scrollPane = new JScrollPane( table );
